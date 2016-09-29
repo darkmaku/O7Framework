@@ -6,10 +6,18 @@ namespace Angkor.O7Framework.Data.Utility
 {
     public class O7Connection : ConfigurationSection
     {
-        [ConfigurationProperty ("provider", IsRequired = true)]
-        public string Provider => (string) this["provider"];
+        [ConfigurationProperty("provider")]
+        public string Provider
+        {
+            get { return (string) base["provider"]; }
+            set { base["provider"] = value; }
+        }
 
-        [ConfigurationProperty ("server", IsRequired = true)]
-        public string Server => (string) this["server"];
+        [ConfigurationProperty("server")]
+        public string Server
+        {
+            get { return (string) base["server"]; }
+            set { base["server"] = value; }
+        }
     }
 }

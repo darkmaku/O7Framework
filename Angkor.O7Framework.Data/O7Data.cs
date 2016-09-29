@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Data;
 using Angkor.O7Framework.Data.Common;
 using Oracle.ManagedDataAccess.Client;
+using Oracle.ManagedDataAccess.Types;
 
 namespace Angkor.O7Framework.Data
 {
@@ -24,7 +25,9 @@ namespace Angkor.O7Framework.Data
             using (var command = _connection.CreateCommand())
             {
                 SetCommand(command, name, parameter);
-                var reader = command.ExecuteReader();
+                _connection.Open();                
+                command.ExecuteNonQuery();
+                var reader = ((OracleRefCursor) command.Parameters[2].Value).GetDataReader();
                 while (reader.Read())                
                     result.Add(function.Invoke(reader));                
             }
@@ -49,7 +52,12 @@ namespace Angkor.O7Framework.Data
         {
             command.CommandType = CommandType.StoredProcedure;
             command.CommandText = name;
-            command.Parameters.Add(parameter.OracleParameters);
+            command.BindByName = true;
+            foreach (OracleParameter oracleParameter in parameter.OracleParameters)
+            {
+                command.Parameters.Add(oracleParameter);
+            }
+            
         }
     }
 }
