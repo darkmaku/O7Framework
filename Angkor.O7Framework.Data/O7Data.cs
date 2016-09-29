@@ -45,7 +45,7 @@ namespace Angkor.O7Framework.Data
             _connection.Dispose();
         }
 
-        private void SetCommand(OracleCommand command, string name, O7Parameter parameter)
+        private static void SetCommand(OracleCommand command, string name, O7Parameter parameter)
         {
             command.CommandType = CommandType.StoredProcedure;
             command.CommandText = name;
