@@ -18,25 +18,23 @@ namespace Angkor.O7Framework.Test
         {
             test[] rest = null;
             O7Connection x = null;
-            using (var data = new O7Data(O7Provider.DataBaseConection("CN01", "CN01")))
+            using (var data = new O7DataAccess(O7Provider.DataBaseConection("CN01", "CN01")))
             {
                 var ora = new OracleParameter();
                 ora.OracleDbType = OracleDbType.RefCursor;
                 ora.Direction = ParameterDirection.ReturnValue;
                 rest =
-                    data.ExecuteProcedure("O7WEB_CONSULTAS.LISTAR_USUARIO",
+                    data.ExecuteFunction("O7WEB_CONSULTAS.LISTAR_USUARIO",
                         new O7Parameter(new[]
                         {
                             new OracleParameter("CODCIA", OracleDbType.Varchar2, 3, "001", ParameterDirection.Input),
-                            new OracleParameter("CODSUC", OracleDbType.Varchar2, 3, "001", ParameterDirection.Input),
-                            new OracleParameter("RETURN", OracleDbType.RefCursor, ParameterDirection.ReturnValue)
-                        }),
+                            new OracleParameter("CODSUC", OracleDbType.Varchar2, 3, "001", ParameterDirection.Input)
+                        }),O7DataType.RefCursor,
                         reader =>
                             new test
                             {
                                 Company = reader.GetString(0),
-                                Branch = reader.GetString(1),
-                                Description = reader.GetString(2)
+                                Branch = reader.GetString(1)
                             });
             }
         }
