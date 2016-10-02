@@ -3,9 +3,9 @@
 using System;
 using System.Reflection;
 
-namespace Angkor.O7Framework.Security
+namespace Angkor.O7Framework.Utility
 {
-    public class Validator
+    public class O7Validator
     {
         public static bool ValidateStructure(Type type, params string[] name)
         {

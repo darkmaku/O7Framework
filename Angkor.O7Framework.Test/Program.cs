@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using Angkor.O7Framework.Data;
 using Angkor.O7Framework.Data.Common;
 using Angkor.O7Framework.Data.Utility;
-using Angkor.O7Framework.Security;
+using Angkor.O7Framework.Utility;
 using Oracle.ManagedDataAccess.Client;
 
 namespace Angkor.O7Framework.Test
@@ -43,7 +43,7 @@ namespace Angkor.O7Framework.Test
         static void Main(string[] args)
         {
             dynamic x = new {Param = "oli", Param2 = "boli"};
-            Validator.ValidateStructure(x.GetType(), "Param", "Param2");
+            O7Validator.ValidateStructure(x.GetType(), "Param", "Param2");
         }
 
     }

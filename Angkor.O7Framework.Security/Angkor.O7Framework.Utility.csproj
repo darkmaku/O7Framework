@@ -7,8 +7,8 @@
     <ProjectGuid>{C5040A3E-40CE-481F-B1D9-2056D642D937}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Angkor.O7Framework.Security</RootNamespace>
-    <AssemblyName>Angkor.O7Framework.Security</AssemblyName>
+    <RootNamespace>Angkor.O7Framework.Utility</RootNamespace>
+    <AssemblyName>Angkor.O7Framework.Utility</AssemblyName>
     <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -33,8 +33,10 @@
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Exception\O7AttributeException.cs" />
+    <Compile Include="O7JsonProperty.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Validator.cs" />
+    <Compile Include="O7Validator.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
