@@ -14,12 +14,17 @@ namespace Angkor.O7Framework.Data
 {
     public class O7DataAccess : IDisposable
     {
-        private OracleConnection _connection;
+        private readonly OracleConnection _connection;
 
         public O7DataAccess(string connection)
         {
             _connection = new OracleConnection(connection);
             _connection.Open();
+        }
+
+        public void Dispose()
+        {
+            _connection.Dispose();
         }
 
         public TResult ExecuteFunction<TResult>(string name, O7Parameter parameter)
@@ -29,7 +34,7 @@ namespace Angkor.O7Framework.Data
             {
                 set_command(command, name, parameter.OracleParameters, get_oracle_type(typeof(TResult)));
                 command.ExecuteNonQuery();
-                return (TResult)get_last_value(command);
+                return (TResult) get_last_value(command);
             }
         }
 
@@ -48,16 +53,12 @@ namespace Angkor.O7Framework.Data
             }
         }
 
-        public void Dispose()
-        {
-            _connection.Dispose();
-        }
-
         private static O7Row make_instance_o7row(OracleDataReader reader)
         {
             var rowType = typeof(O7Row);
             var parameters = new[] {typeof(OracleDataReader)};
-            var constructor = rowType.GetConstructor(BindingFlags.Instance | BindingFlags.NonPublic, null, parameters, null);
+            var constructor = rowType.GetConstructor(BindingFlags.Instance | BindingFlags.NonPublic, null, parameters,
+                null);
             return (O7Row) constructor.Invoke(new[] {reader});
         }
 
@@ -85,7 +86,8 @@ namespace Angkor.O7Framework.Data
             return cursor.GetDataReader();
         }
 
-        private static void set_command(OracleCommand command, string name, OracleParameter[] parameters, OracleDbType type)
+        private static void set_command(OracleCommand command, string name, OracleParameter[] parameters,
+            OracleDbType type)
         {
             command.CommandType = CommandType.StoredProcedure;
             command.CommandText = name;
