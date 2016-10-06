@@ -5,6 +5,8 @@ using System.Collections.Generic;
 using System.Data;
 using System.Reflection;
 using Angkor.O7Framework.Data.Common;
+using Angkor.O7Framework.Data.Exception;
+using Angkor.O7Framework.Data.Utility;
 using Oracle.ManagedDataAccess.Client;
 using Oracle.ManagedDataAccess.Types;
 
@@ -20,28 +22,28 @@ namespace Angkor.O7Framework.Data
             _connection.Open();
         }
 
-        public TResult ExecuteFunction<TResult>(string name, O7Parameter parameter, O7DataType type)
+        public TResult ExecuteFunction<TResult>(string name, O7Parameter parameter)
             where TResult : struct
         {
             using (var command = _connection.CreateCommand())
             {
-                set_command(command, name, parameter.OracleParameters, get_oracle_type(type));
+                set_command(command, name, parameter.OracleParameters, get_oracle_type(typeof(TResult)));
                 command.ExecuteNonQuery();
-                return (TResult) get_last_value(command);
+                return (TResult)get_last_value(command);
             }
         }
 
-        public TResult[] ExecuteFunction<TResult>(string name, O7Parameter parameter, O7DataType type,
-            Func<OracleDataReader, TResult> function) where TResult : O7Entity
-        {            
+        public TResult[] ExecuteFunction<TResult>(string name, O7Parameter parameter,
+            Func<O7Row, TResult> function) where TResult : O7Entity
+        {
             using (var command = _connection.CreateCommand())
             {
-                set_command(command, name, parameter.OracleParameters, get_oracle_type(type));                
+                set_command(command, name, parameter.OracleParameters, OracleDbType.RefCursor);
                 command.ExecuteNonQuery();
                 var reader = get_reader(get_last_value(command) as OracleRefCursor);
                 var result = new List<TResult>();
                 while (reader.Read())
-                    result.Add(function.Invoke(reader));
+                    result.Add(function.Invoke(make_instance_o7row(reader)));
                 return result.ToArray();
             }
         }
@@ -49,43 +51,25 @@ namespace Angkor.O7Framework.Data
         public void Dispose()
         {
             _connection.Dispose();
-        }        
+        }
 
-        private static OracleDbType get_oracle_type(O7DataType dataType)
+        private static O7Row make_instance_o7row(OracleDataReader reader)
         {
-            switch (dataType)
-            {
-                case O7DataType.Char:
-                    return OracleDbType.Char;
-                case O7DataType.NChar:
-                    return OracleDbType.NChar;
-                case O7DataType.Varchar2:
-                    return OracleDbType.Varchar2;
-                case O7DataType.Blob:
-                    return OracleDbType.Blob;
-                case O7DataType.Date:
-                    return OracleDbType.Date;
-                case O7DataType.Decimal:
-                    return OracleDbType.Decimal;
-                case O7DataType.Double:
-                    return OracleDbType.Double;
-                case O7DataType.Long:
-                    return OracleDbType.Long;
-                case O7DataType.Int16:
-                    return OracleDbType.Int16;
-                case O7DataType.Int32:
-                    return OracleDbType.Int32;
-                case O7DataType.Int64:
-                    return OracleDbType.Int64;
-                case O7DataType.NVarchar2:
-                    return OracleDbType.NVarchar2;
-                case O7DataType.RefCursor:
-                    return OracleDbType.RefCursor;
-                case O7DataType.Single:
-                    return OracleDbType.Single;
-                default:
-                    throw new ArgumentOutOfRangeException(nameof(dataType), dataType, null);
-            }
+            var rowType = typeof(O7Row);
+            var parameters = new[] {typeof(OracleDataReader)};
+            var constructor = rowType.GetConstructor(BindingFlags.Instance | BindingFlags.NonPublic, null, parameters, null);
+            return (O7Row) constructor.Invoke(new[] {reader});
+        }
+
+        private static OracleDbType get_oracle_type(Type dataType)
+        {
+            if (dataType == typeof(string))
+                return OracleDbType.NVarchar2;
+            if (dataType == typeof(int))
+                return OracleDbType.Int32;
+            if (dataType == typeof(double))
+                return OracleDbType.Double;
+            throw O7DataException.MakeMatchException;
         }
 
         private static object get_last_value(OracleCommand command)

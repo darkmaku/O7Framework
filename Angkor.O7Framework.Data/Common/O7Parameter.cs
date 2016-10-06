@@ -11,16 +11,7 @@ namespace Angkor.O7Framework.Data.Common
 {
     public class O7Parameter
     {
-        private HashSet<OracleParameter> _parameters;
-
-        public OracleParameter[] OracleParameters
-        {
-            get
-            {
-                if (!HasParameters) throw O7DataException.MakeParameterException;
-                return _parameters.ToArray();
-            }
-        }
+        private readonly HashSet<OracleParameter> _parameters;
 
         public O7Parameter(OracleParameter[] parameter)
         {
@@ -32,48 +23,39 @@ namespace Angkor.O7Framework.Data.Common
             _parameters = new HashSet<OracleParameter>();
         }
 
-        public void Add(string name, O7DataType type, int typeSize, object value)
+        public OracleParameter[] OracleParameters
         {
-            _parameters.Add(new OracleParameter(name, get_oracle_type(type), typeSize, value, ParameterDirection.Input));
+            get
+            {
+                if (!HasParameters) throw O7DataException.MakeParameterException;
+                return _parameters.ToArray();
+            }
         }
 
         public bool HasParameters => _parameters.Count > 0;
 
-        private static OracleDbType get_oracle_type(O7DataType dataType)
+        public void Add(string name, object value)
         {
-            switch (dataType)
-            {
-                case O7DataType.Char:
-                    return OracleDbType.Char;
-                case O7DataType.NChar:
-                    return OracleDbType.NChar;
-                case O7DataType.Varchar2:
-                    return OracleDbType.Varchar2;
-                case O7DataType.Blob:
-                    return OracleDbType.Blob;
-                case O7DataType.Date:
-                    return OracleDbType.Date;
-                case O7DataType.Decimal:
-                    return OracleDbType.Decimal;
-                case O7DataType.Double:
-                    return OracleDbType.Double;
-                case O7DataType.Long:
-                    return OracleDbType.Long;
-                case O7DataType.Int16:
-                    return OracleDbType.Int16;
-                case O7DataType.Int32:
-                    return OracleDbType.Int32;
-                case O7DataType.Int64:
-                    return OracleDbType.Int64;
-                case O7DataType.NVarchar2:
-                    return OracleDbType.NVarchar2;
-                case O7DataType.RefCursor:
-                    return OracleDbType.RefCursor;
-                case O7DataType.Single:
-                    return OracleDbType.Single;
-                default:
-                    throw new ArgumentOutOfRangeException(nameof(dataType), dataType, null);
-            }
+            _parameters.Add(make_parameter(name, value));
+        }
+
+        private static OracleParameter make_parameter(string name, object value)
+        {
+            var parameter = new OracleParameter(name, get_oracle_type(value.GetType()));
+            parameter.Value = value;
+            parameter.Direction = ParameterDirection.Input;
+            return parameter;
+        }
+
+        private static OracleDbType get_oracle_type(Type dataType)
+        {
+            if (dataType == typeof(string))
+                return OracleDbType.NVarchar2;
+            if (dataType == typeof(int))
+                return OracleDbType.Int32;
+            if (dataType == typeof(double))
+                return OracleDbType.Double;
+            throw O7DataException.MakeMatchException;
         }
     }
 }
