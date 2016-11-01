@@ -27,8 +27,7 @@ namespace Angkor.O7Framework.Data
             _connection.Dispose();
         }
 
-        public TResult ExecuteFunction<TResult>(string name, O7Parameter parameter)
-            where TResult : struct
+        public TResult ExecuteFunction<TResult>(string name, O7Parameter parameter)            
         {
             using (var command = _connection.CreateCommand())
             {

@@ -35,6 +35,7 @@
   <ItemGroup>
     <Compile Include="Exception\O7AttributeException.cs" />
     <Compile Include="O7JsonProperty.cs" />
+    <Compile Include="O7JsonSerealizer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="O7Validator.cs" />
   </ItemGroup>

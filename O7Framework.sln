@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Angkor.O7Framework.Contract
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Angkor.O7Framework.Extension", "Angkor.O7Framework.Extension\Angkor.O7Framework.Extension.csproj", "{84613766-04AA-4EFB-A49E-8A5B014B003F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Angkor.O7Framework.Web", "Angkor.O7Framework.Web\Angkor.O7Framework.Web.csproj", "{EB18D8F8-FA06-4255-B02E-249AB2D60CE0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{84613766-04AA-4EFB-A49E-8A5B014B003F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{84613766-04AA-4EFB-A49E-8A5B014B003F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{84613766-04AA-4EFB-A49E-8A5B014B003F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EB18D8F8-FA06-4255-B02E-249AB2D60CE0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EB18D8F8-FA06-4255-B02E-249AB2D60CE0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EB18D8F8-FA06-4255-B02E-249AB2D60CE0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EB18D8F8-FA06-4255-B02E-249AB2D60CE0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
