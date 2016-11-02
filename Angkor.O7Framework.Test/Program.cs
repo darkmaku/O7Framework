@@ -9,6 +9,7 @@ using Angkor.O7Framework.Data;
 using Angkor.O7Framework.Data.Common;
 using Angkor.O7Framework.Data.Utility;
 using Angkor.O7Framework.Utility;
+using Newtonsoft.Json;
 using Oracle.ManagedDataAccess.Client;
 
 namespace Angkor.O7Framework.Test
@@ -34,7 +35,10 @@ namespace Angkor.O7Framework.Test
             var list = new List<Compa>();
             list.Add(new Compa {id = "001", desc = "Piura"});
             list.Add(new Compa { id = "100", desc = "" });
-            O7JsonSerealizer.Serialize(list);
+            var x = JsonConvert.SerializeObject(list);
+            var y = O7JsonSerealizer.Serialize(list);
+            Console.WriteLine(x);
+            Console.WriteLine(y);
         }
 
 //        static void Main(string[] args)

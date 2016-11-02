@@ -41,11 +41,9 @@ namespace Angkor.O7Framework.Utility
             for (var i = 0; i < properties.Length; i++)
             {
                 var property = properties[i];
-                if (property.Name == name)
-                {
-                    var convertValue = Convert.ChangeType(value, property.PropertyType);
-                    property.SetValue(obj, convertValue);
-                }
+                if (property.Name != name) continue;
+                var convertValue = Convert.ChangeType(value, property.PropertyType);
+                property.SetValue(obj, convertValue);
             }
         }
 
@@ -80,7 +78,7 @@ namespace Angkor.O7Framework.Utility
             for (var i = 0; i < list.Count; i++)
             {
                 var item = list[i];                
-                stringBuilder.Append($"{{{build_non_generic(item, item.GetType())}}}{build_comma(i + 1 < list.Count)}");
+                stringBuilder.Append($"{build_non_generic(item, item.GetType())}{build_comma(i + 1 < list.Count)}");                
             }
             return stringBuilder.ToString();
         }
@@ -91,8 +89,7 @@ namespace Angkor.O7Framework.Utility
             for (var i = 0; i < length; i++)
             {
                 var property = properties[i];
-                stringBuilder.Append(
-                    $"\"{property.Name}\":{build_value(property.GetValue(obj))}{build_comma(i + 1 < length)}");
+                stringBuilder.Append($"\"{property.Name}\":{build_value(property.GetValue(obj))}{build_comma(i + 1 < length)}");
             }
             return stringBuilder.ToString();
         }
