@@ -15,12 +15,13 @@ namespace Angkor.O7Framework.Data.Utility
 
         public TValue GetValue<TValue>(int index)
         {
+            var result = _reader.GetValue(index);
             if (typeof(TValue) == typeof(string))
-                return (TValue) Convert.ChangeType(_reader.GetString(index), typeof(string));
+                return (TValue) Convert.ChangeType(result ?? string.Empty, typeof(string));
             if (typeof(TValue) == typeof(int))
-                return (TValue) Convert.ChangeType(_reader.GetInt32(index), typeof(int));
+                return (TValue) Convert.ChangeType(result, typeof(int));
             if (typeof(TValue) == typeof(double))
-                return (TValue) Convert.ChangeType(_reader.GetDouble(index), typeof(double));
+                return (TValue) Convert.ChangeType(result, typeof(double));
             throw O7DataException.MakeMatchException;
         }
     }

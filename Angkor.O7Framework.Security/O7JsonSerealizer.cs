@@ -79,8 +79,8 @@ namespace Angkor.O7Framework.Utility
             var stringBuilder = new StringBuilder();
             for (var i = 0; i < list.Count; i++)
             {
-                var item = list[i];
-                stringBuilder.Append($"{{{build_non_generic(item, type)}}}{build_comma(i + 1 < list.Count)}");
+                var item = list[i];                
+                stringBuilder.Append($"{{{build_non_generic(item, item.GetType())}}}{build_comma(i + 1 < list.Count)}");
             }
             return stringBuilder.ToString();
         }

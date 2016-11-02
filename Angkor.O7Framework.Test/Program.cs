@@ -20,13 +20,21 @@ namespace Angkor.O7Framework.Test
 
     }
 
+    class Compa
+    {
+        public string id { get; set; }
+        public string desc { get; set; }
+        
+    }
+
     class Program
     {
         static void Main(string[] args)
-        {
-            var x = "{\"A\":\"Serena y Satoshi\",\"B\":100}";
-            var y = O7JsonSerealizer.Deserialize<X>(x);
-            Console.WriteLine(x.Remove(0, 1).Remove(x.Length-2, 1));
+        {            
+            var list = new List<Compa>();
+            list.Add(new Compa {id = "001", desc = "Piura"});
+            list.Add(new Compa { id = "100", desc = "" });
+            O7JsonSerealizer.Serialize(list);
         }
 
 //        static void Main(string[] args)
