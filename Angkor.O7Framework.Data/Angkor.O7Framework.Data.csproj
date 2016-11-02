@@ -46,6 +46,7 @@
     <Compile Include="O7DataAccess.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utility\O7Connection.cs" />
+    <Compile Include="Utility\O7Mapper.cs" />
     <Compile Include="Utility\O7Provider.cs" />
     <Compile Include="Utility\O7Row.cs" />
   </ItemGroup>
