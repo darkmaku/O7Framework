@@ -33,11 +33,8 @@
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Exception\O7AttributeException.cs" />
-    <Compile Include="O7JsonProperty.cs" />
     <Compile Include="O7JsonSerealizer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="O7Validator.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
