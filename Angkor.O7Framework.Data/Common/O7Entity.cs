@@ -4,6 +4,10 @@ namespace Angkor.O7Framework.Data.Common
 {
     public abstract class O7Entity
     {
+    }
+
+    public abstract class O7BaseEntity : O7Entity
+    {
         public string Company { get; set; }
         public string Branch { get; set; }
     }

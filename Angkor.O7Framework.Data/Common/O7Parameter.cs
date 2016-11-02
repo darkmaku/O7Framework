@@ -23,14 +23,7 @@ namespace Angkor.O7Framework.Data.Common
             _parameters = new HashSet<OracleParameter>();
         }
 
-        public OracleParameter[] OracleParameters
-        {
-            get
-            {
-                if (!HasParameters) throw O7DataException.MakeParameterException;
-                return _parameters.ToArray();
-            }
-        }
+        public OracleParameter[] OracleParameters => _parameters.ToArray();         
 
         public bool HasParameters => _parameters.Count > 0;
 

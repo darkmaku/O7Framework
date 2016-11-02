@@ -37,7 +37,7 @@ namespace Angkor.O7Framework.Data
             }
         }
 
-        public TResult[] ExecuteFunction<TResult>(string name, O7Parameter parameter, O7Mapper<TResult> mapper) where TResult : O7Entity
+        public List<TResult> ExecuteFunction<TResult>(string name, O7Parameter parameter, O7Mapper<TResult> mapper) where TResult : O7Entity
         {
             using (var command = _connection.CreateCommand())
             {
@@ -50,7 +50,7 @@ namespace Angkor.O7Framework.Data
                     mapper.SetRow(make_instance_o7row(reader));
                     result.Add(mapper.Map());
                 }
-                return result.ToArray();
+                return result;
             }
         }
 

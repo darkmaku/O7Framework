@@ -1,7 +1,10 @@
 ﻿// Create by Felix A. Bueno
+
+using Angkor.O7Framework.Data.Common;
+
 namespace Angkor.O7Framework.Data.Utility
 {
-    public abstract class O7Mapper<T> where T : class
+    public abstract class O7Mapper<T> where T : O7Entity
     {
         protected O7Row O7Row;
 
