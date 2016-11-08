@@ -4,7 +4,7 @@ namespace Angkor.O7Framework.Data.Exception
 {
     public class O7DataException : System.Exception
     {
-        public O7DataException(string message) : base(message)
+        protected O7DataException(string message) : base(message)
         {
         }
 

@@ -1,8 +1,9 @@
 ﻿// Create by Felix A. Bueno
 
 using System.Web.Mvc;
+using Angkor.O7Framework.Web.Security;
 
-namespace Angkor.O7Framework.Web
+namespace Angkor.O7Framework.Web.Base
 {
     public abstract class O7ViewPage : WebViewPage
     {

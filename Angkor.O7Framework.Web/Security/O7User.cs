@@ -1,6 +1,6 @@
 ﻿// Create by Felix A. Bueno
 
-namespace Angkor.O7Framework.Web
+namespace Angkor.O7Framework.Web.Security
 {
     public class O7User
     {

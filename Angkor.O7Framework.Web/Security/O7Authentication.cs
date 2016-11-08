@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.Security;
 using Angkor.O7Framework.Utility;
 
-namespace Angkor.O7Framework.Web
+namespace Angkor.O7Framework.Web.Security
 {
     public class O7Authentication
     {
