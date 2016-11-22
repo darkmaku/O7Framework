@@ -71,6 +71,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Base\O7ViewModel.cs" />
     <Compile Include="Exception\O7WebSourceException.cs" />
     <Compile Include="HtmlHelper\LinkHelper.cs" />
     <Compile Include="Security\O7Authentication.cs" />
