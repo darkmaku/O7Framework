@@ -1,7 +1,5 @@
 ﻿// Create by Felix A. Bueno
 
-using System;
-
 namespace Angkor.O7Framework.Utility
 {
     public class O7ParamBuilder
@@ -35,5 +33,7 @@ namespace Angkor.O7Framework.Utility
             }
             return string.Empty;
         }
+
+        public override string ToString() => _parameterUrl;
     }
 }

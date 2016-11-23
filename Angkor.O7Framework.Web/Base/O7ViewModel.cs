@@ -14,5 +14,7 @@ namespace Angkor.O7Framework.Web.Base
         public List<string> ErrorMessages { get; }
 
         public virtual bool ValidViewModel => true;
+
+        public bool IsCorrect => ErrorMessages.Count == 0;
     }
 }
