@@ -9,6 +9,13 @@ namespace Angkor.O7Framework.Web.HtmlHelper
 {
     public static class LinkHelper
     {
+        public static string PartialLink(string link)
+        {
+            var source = ConfigurationManager.GetSection("O7WebSource") as O7WebSource;
+            if (source == null) throw O7WebSourceException.MakeWebSourceException;
+            return build_source(source, link);
+        }
+
         public static IHtmlString JavaScriptLink(this System.Web.Mvc.HtmlHelper helper, string link)
         {
             var source = ConfigurationManager.GetSection("O7WebSource") as O7WebSource;

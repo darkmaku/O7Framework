@@ -8,13 +8,14 @@ namespace Angkor.O7Framework.Web.Base
     {
         protected O7ViewModel()
         {
-            ErrorMessages = new List<string>();
+            ValidationErrorMessages = new List<string>();
         }
 
-        public List<string> ErrorMessages { get; }
-
+        public List<string> ValidationErrorMessages { get; }
         public virtual bool ValidViewModel => true;
 
-        public bool IsCorrect => ErrorMessages.Count == 0;
+        public string ErrorMessage { get; set; }
+        public int ErrorCode { get; set; }
+        public bool IsCorrect => !string.IsNullOrEmpty(ErrorMessage) && ErrorCode == 0;
     }
 }

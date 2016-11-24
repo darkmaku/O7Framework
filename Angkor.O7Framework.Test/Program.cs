@@ -28,17 +28,32 @@ namespace Angkor.O7Framework.Test
         
     }
 
+    public class CredentialCookie
+    {
+        public string Login { get; set; }
+        public string Password { get; set; }
+        public string CompanyId { get; set; }
+        public string BranchId { get; set; }
+
+        public CredentialCookie() { }
+
+        public CredentialCookie(string login, string password, string companyId, string branchId)
+        {
+            Login = login;
+            Password = password;
+            CompanyId = companyId;
+            BranchId = branchId;
+        }
+    }
+
     class Program
     {
         static void Main(string[] args)
-        {            
-            var list = new List<Compa>();
-            list.Add(new Compa {id = "001", desc = "Piura"});
-            list.Add(new Compa { id = "100", desc = "" });
-            var x = JsonConvert.SerializeObject(list);
-            var y = O7JsonSerealizer.Serialize(list);
-            Console.WriteLine(x);
-            Console.WriteLine(y);
+        {
+            var result = "{\"Login\":\"CN01\",\"Password\":\"CN01\",\"CompanyId\":\"001\",\"BranchId\":\"001\"}";
+            var serializedValue = O7JsonSerealizer.Deserialize<CredentialCookie>(result);
+            Console.WriteLine(serializedValue.BranchId);
+            Console.ReadKey();
         }
 
 //        static void Main(string[] args)
