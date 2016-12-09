@@ -50,9 +50,14 @@ namespace Angkor.O7Framework.Test
     {
         static void Main(string[] args)
         {
-            var result = "{\"Login\":\"CN01\",\"Password\":\"CN01\",\"CompanyId\":\"001\",\"BranchId\":\"001\"}";
-            var serializedValue = O7JsonSerealizer.Deserialize<CredentialCookie>(result);
-            Console.WriteLine(serializedValue.BranchId);
+            var x = "HOLA";
+            object z = "hola";
+            Console.WriteLine(x);
+            var s = z as string;
+            var u = $"{z}";
+            Console.WriteLine(z);
+            Console.WriteLine(u);
+            Console.WriteLine(s);
             Console.ReadKey();
         }
 
