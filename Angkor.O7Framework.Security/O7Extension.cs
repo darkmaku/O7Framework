@@ -3,14 +3,12 @@
 using System;
 using System.Collections.Generic;
 using System.Reflection;
-using Angkor.O7Framework.Data.Common;
 
 namespace Angkor.O7Framework.Utility
 {
     public static class O7Extension
     {
-        public static List<TEntity> Append<TValue,TEntity>(this List<TEntity> list, string propertyName, TValue value)
-            where TEntity : O7Entity
+        public static List<TEntity> Append<TValue,TEntity>(this List<TEntity> list, string propertyName, TValue value)            
         {
             var type = typeof(TEntity);
             var property = type.GetProperty(propertyName);
@@ -27,7 +25,7 @@ namespace Angkor.O7Framework.Utility
 
         public static string ToUriPath(this string url)
         {
-            return replacePercentEncoding(url, new Tuple<string, string>("!", "%21"),
+            return replace_percent_encoding(url, new Tuple<string, string>("!", "%21"),
                 new Tuple<string, string>("#", "%23"), new Tuple<string, string>("$", "%24"),
                 new Tuple<string, string>("&", "%26"), new Tuple<string, string>("'", "%27"),
                 new Tuple<string, string>("(", "%28"), new Tuple<string, string>(")", "%29"),
@@ -39,14 +37,14 @@ namespace Angkor.O7Framework.Utility
                 new Tuple<string, string>("]", "%5D"));
         }
 
-        private static string replacePercentEncoding(string url, params Tuple<string, string>[] values)
+        private static string replace_percent_encoding(string url, params Tuple<string, string>[] values)
         {
             for (var i = 0; i < values.Length; i++)
-                url = replaceChar(url, values[i]);
+                url = replace_char(url, values[i]);
             return url;
         }
 
-        private static string replaceChar(string url, Tuple<string, string> value)
+        private static string replace_char(string url, Tuple<string, string> value)
         {
             return url.Replace(value.Item1, value.Item2);
         }
