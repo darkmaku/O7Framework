@@ -3,13 +3,8 @@
 using System.Web.Mvc;
 using Angkor.O7Framework.Domain.Response;
 
-namespace Angkor.O7Framework.Web.Utility
+namespace Angkor.O7Framework.Web.WebResult
 {
-    public class O7HttpResult
-    {
-        public static O7JsonResult MakeJsonResult(O7Response value) => new O7JsonResult(value);
-    }
-
     public class O7JsonResult : JsonResult
     {
         private readonly O7Response _response;
@@ -18,17 +13,28 @@ namespace Angkor.O7Framework.Web.Utility
         {
             _response = value;
             JsonRequestBehavior = JsonRequestBehavior.AllowGet;
+            ContentType = "application/json";
         }
 
         public override void ExecuteResult(ControllerContext context)
         {
             var errorResponse = _response as O7ErrorResponse;
-            if(errorResponse != null)
-            {                
+            if (errorResponse != null)
+            {
                 context.RequestContext.HttpContext.Response.StatusCode = errorResponse.Code;
                 context.RequestContext.HttpContext.Response.StatusDescription = errorResponse.Message;
-            }            
-            base.ExecuteResult(context);            
-        }        
+            }
+            var successResponse = _response as O7SuccessResponse<string>;
+            if (successResponse != null)
+            {
+                Data = successResponse.Value1;
+            }
+            else
+            {
+                context.RequestContext.HttpContext.Response.StatusCode = 400;
+                context.RequestContext.HttpContext.Response.StatusDescription = "Bad Request";
+            }
+            base.ExecuteResult(context);
+        }
     }
 }

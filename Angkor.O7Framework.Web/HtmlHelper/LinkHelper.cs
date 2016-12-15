@@ -1,6 +1,8 @@
 ﻿// Create by Felix A. Bueno
 
+using System;
 using System.Configuration;
+using System.Text;
 using System.Web;
 using Angkor.O7Framework.Web.Exception;
 using Angkor.O7Framework.Web.Utility;
@@ -9,20 +11,23 @@ namespace Angkor.O7Framework.Web.HtmlHelper
 {
     public static class LinkHelper
     {
-        public static string PartialLink(string link)
+        public static string SourceLink(string controller, string action, params Tuple<string, string>[] parameters)
         {
-            var source = get_source();
-            return build_source(source, link);
+            var link = SourceLink();
+            var builder = new StringBuilder();
+            for (var i = 0; i < parameters.Length; i++)
+            {
+                var parameter = parameters[i];
+                builder.Append($"{parameter.Item1}={parameter.Item2}");
+            }
+            return $"{link}/{controller}/{action}?{builder}";
         }
 
-        public static string SourceLink
+        public static string SourceLink()
         {
-            get
-            {
-                var source = get_source();
-                var portPath = !string.IsNullOrEmpty(source.Port) ? $"{source.Port}" : string.Empty;
-                return string.IsNullOrEmpty(portPath) ? $"http://{source.Address}/" : $"http://{source.Address}:{portPath}";
-            }
+            var source = get_source();
+            var portPath = !string.IsNullOrEmpty(source.Port) ? $"{source.Port}" : string.Empty;
+            return string.IsNullOrEmpty(portPath) ? $"http://{source.Address}/" : $"http://{source.Address}:{portPath}/";            
         }
 
         public static IHtmlString JavaScriptLink(this System.Web.Mvc.HtmlHelper helper, string link)

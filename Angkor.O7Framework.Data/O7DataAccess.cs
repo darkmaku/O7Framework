@@ -34,12 +34,13 @@ namespace Angkor.O7Framework.Data
             }
         }
 
-        public IEnumerable<TResult> ExecuteFunction<TResult>(string name, Type mapperType) where TResult : O7Entity
+        public List<TResult> ExecuteFunction<TResult>(string name, Type mapperType) where TResult : O7Entity
             => ExecuteFunction<TResult>(name, new O7Parameter(), mapperType);
 
-        public IEnumerable<TResult> ExecuteFunction<TResult>(string name, O7Parameter parameter, Type mapperType)
+        public List<TResult> ExecuteFunction<TResult>(string name, O7Parameter parameter, Type mapperType)
             where TResult : O7Entity
         {
+            var result = new List<TResult>();
             using (var command = _connection.CreateCommand())
             {
                 set_command(command, name, parameter.OracleParameters, OracleDbType.RefCursor);
@@ -49,9 +50,10 @@ namespace Angkor.O7Framework.Data
                 {
                     var mapper = make_mapper_instance<TResult>(mapperType);
                     mapper.SetSource(make_instance_o7row(reader));
-                    yield return mapper.MapTarget();
+                    result.Add(mapper.MapTarget());
                 }                
             }
+            return result;
         }        
     }
 }

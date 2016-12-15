@@ -79,9 +79,12 @@
     <Compile Include="Security\O7User.cs" />
     <Compile Include="Base\O7ViewPage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Utility\O7HttpResult.cs" />
+    <Compile Include="WebResult\O7HttpResult.cs" />
     <Compile Include="Utility\O7ViewModelMapper.cs" />
     <Compile Include="Utility\O7WebSource.cs" />
+    <Compile Include="WebResult\O7JsonResult.cs" />
+    <Compile Include="WebResult\O7RedirectResult.cs" />
+    <Compile Include="WebResult\O7ViewResult.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
