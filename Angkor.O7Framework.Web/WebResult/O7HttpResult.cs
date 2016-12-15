@@ -11,6 +11,8 @@ namespace Angkor.O7Framework.Web.WebResult
     {
         public static O7JsonResult MakeJsonResult(O7Response value) => new O7JsonResult(value);
 
+        public static O7RedirectResult MakeRedirectLogin() => new O7RedirectResult("Security");
+
         public static ActionResult MakeActionResult<TViewModel>(O7Response response, O7ViewModelMapper<TViewModel> mapper) 
             where TViewModel : O7ViewModel
         {
