@@ -9,8 +9,9 @@ namespace Angkor.O7Framework.Web.Security
 {
     public class O7Authentication
     {
-        public static HttpCookie Generate(O7User user)
+        public static HttpCookie Generate(string company, string branch, string login, string name, string password)
         {
+            var user = new O7User(company, branch, login, name, password);
             var userJson = O7JsonSerealizer.Serialize(user);
             var ticket = new FormsAuthenticationTicket(1, user.Login, DateTime.Now, DateTime.Now.AddMinutes(20), false, userJson);
             var encrypted = FormsAuthentication.Encrypt(ticket);
