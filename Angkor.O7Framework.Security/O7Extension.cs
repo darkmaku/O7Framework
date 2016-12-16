@@ -8,7 +8,7 @@ namespace Angkor.O7Framework.Utility
 {
     public static class O7Extension
     {
-        public static List<TEntity> Append<TValue,TEntity>(this List<TEntity> list, string propertyName, TValue value)            
+        public static void Append<TValue,TEntity>(this List<TEntity> list, string propertyName, TValue value)            
         {
             var type = typeof(TEntity);
             var property = type.GetProperty(propertyName);
@@ -20,7 +20,6 @@ namespace Angkor.O7Framework.Utility
                 else
                     property.SetValue(entity, value);
             }
-            return list;
         }
 
         public static string ToUriPath(this string url)
@@ -57,7 +56,7 @@ namespace Angkor.O7Framework.Utility
         }
 
         private static string append(object currentValue, object appendValue)
-        {            
+        {
             return $"{currentValue}{appendValue}";
         }    
     }

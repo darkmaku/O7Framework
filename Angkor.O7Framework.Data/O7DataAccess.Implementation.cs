@@ -42,7 +42,7 @@ namespace Angkor.O7Framework.Data
 
         private static object get_last_value(OracleCommand command)
         {
-            var length = command.Parameters.Count - 1;
+            var length = command.Parameters.Count - 1;            
             return command.Parameters[length].Value;
         }
 
@@ -62,7 +62,14 @@ namespace Angkor.O7Framework.Data
             command.BindByName = true;
             for (var i = 0; i < parameters.Length; i++)
                 command.Parameters.Add(parameters[i]);
-            command.Parameters.Add(new OracleParameter("RETURN", type, ParameterDirection.ReturnValue));
+            command.Parameters.Add(make_return_parameter(type));
+        }
+
+        private static OracleParameter make_return_parameter(OracleDbType type)
+        {
+            if (type == OracleDbType.NVarchar2)
+                return new OracleParameter("RETURN", type, ParameterDirection.ReturnValue) {Size = 1000};
+            return new OracleParameter("RETURN", type, ParameterDirection.ReturnValue);
         }
     }
 }

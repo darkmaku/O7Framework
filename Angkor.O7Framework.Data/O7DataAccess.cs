@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using Angkor.O7Framework.Data.Common;
 using Oracle.ManagedDataAccess.Client;
+using Oracle.ManagedDataAccess.Types;
 
 namespace Angkor.O7Framework.Data
 {
@@ -30,7 +31,12 @@ namespace Angkor.O7Framework.Data
             {
                 set_command(command, name, parameter.OracleParameters, get_oracle_type(typeof(TResult)));
                 command.ExecuteNonQuery();
-                return (TResult) get_last_value(command);
+                if (typeof(TResult) == typeof(string))
+                {
+                    var result = (OracleString)get_last_value(command);
+                    return (TResult)(object)result.Value;
+                }
+                return (TResult)get_last_value(command);
             }
         }
 
