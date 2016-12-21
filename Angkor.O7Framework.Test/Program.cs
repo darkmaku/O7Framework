@@ -46,20 +46,57 @@ namespace Angkor.O7Framework.Test
         }
     }
 
+    class iop
+    {
+        public iop(string msg)
+        {
+            Console.WriteLine(msg);
+        }
+
+        public iop():this("Con parametros")
+        {
+            Console.WriteLine("Sin parametros");
+        }
+    }
+
     class Program
     {
-        static void Main(string[] args)
+        static void Main()
         {
-            var x = "HOLA";
-            object z = "hola";
-            Console.WriteLine(x);
-            var s = z as string;
-            var u = $"{z}";
-            Console.WriteLine(z);
-            Console.WriteLine(u);
-            Console.WriteLine(s);
-            Console.ReadKey();
+            var x = O7JsonSerealizer.Serialize(true);
         }
+//        static void Main()
+//        {
+//            var data = "Data Source = 192.168.1.35:1521/UDEP2015; User Id = CN01; Password = CN01;";
+//            using (var dataAccess = new O7DataAccess(data))
+//            {
+//                var parameter = new O7Parameter();
+//                parameter.Add("COMPANY", "001");
+//                parameter.Add("BRANCH", "001");
+//                parameter.Add("YEAR", "2019");
+//                dataAccess.ExecuteFunction<int>("ADVISORY_PERIOD.ACTIVATE_YEAR", parameter);
+//            }
+//        }
+
+//        static void Main(string[] args)
+//        {
+//            var x= new iop();
+//            Console.ReadKey();
+//        }
+
+
+//        static void Main(string[] args)
+//        {
+//            var x = "HOLA";
+//            object z = "hola";
+//            Console.WriteLine(x);
+//            var s = z as string;
+//            var u = $"{z}";
+//            Console.WriteLine(z);
+//            Console.WriteLine(u);
+//            Console.WriteLine(s);
+//            Console.ReadKey();
+//        }
 
 //        static void Main(string[] args)
 //        {

@@ -42,6 +42,12 @@ namespace Angkor.O7Framework.Web.HtmlHelper
             return new HtmlString($"<link href='{build_source(source, link)}' rel='stylesheet' />");
         }
 
+        public static IHtmlString StyleLink(this System.Web.Mvc.HtmlHelper helper, string link, string mediaType)
+        {
+            var source = get_source();
+            return new HtmlString($"<link href='{build_source(source, link)}' rel='stylesheet' media='{mediaType}' />");
+        }
+
         private static O7WebSource get_source()
         {
             var source = ConfigurationManager.GetSection("O7WebSource") as O7WebSource;

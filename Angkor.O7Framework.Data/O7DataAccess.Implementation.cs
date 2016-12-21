@@ -36,7 +36,7 @@ namespace Angkor.O7Framework.Data
             if (dataType == typeof(int))
                 return OracleDbType.Int32;
             if (dataType == typeof(double))
-                return OracleDbType.Double;
+                return OracleDbType.Double;            
             throw O7DataException.MakeMatchException;
         }
 

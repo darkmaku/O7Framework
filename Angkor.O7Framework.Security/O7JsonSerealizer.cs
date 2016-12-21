@@ -63,6 +63,8 @@ namespace Angkor.O7Framework.Utility
 
         private static string build_non_generic(object obj, Type type)
         {
+            if (type.IsPrimitive)
+                return $"{obj}";
             var properties = type.GetProperties();
             return $"{{{build_entity(obj, properties, properties.Length)}}}";
         }

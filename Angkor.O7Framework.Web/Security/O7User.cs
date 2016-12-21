@@ -4,11 +4,11 @@ namespace Angkor.O7Framework.Web.Security
 {
     public class O7User
     {
-        public string Company { get; }
-        public string Branch { get; }
-        public string Login { get; }
-        public string Name { get; }
-        public string Password { get; }
+        public string Company { get; set; }
+        public string Branch { get; set; }
+        public string Login { get; set; }
+        public string Name { get; set; }
+        public string Password { get; set; }
 
         public O7User(string company, string branch, string login, string name, string password)
         {
@@ -17,6 +17,10 @@ namespace Angkor.O7Framework.Web.Security
             Login = login;
             Name = name;
             Password = password;
+        }
+
+        public O7User()
+        {
         }
     }
 }

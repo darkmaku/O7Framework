@@ -36,6 +36,11 @@ namespace Angkor.O7Framework.Data
                     var result = (OracleString)get_last_value(command);
                     return (TResult)(object)result.Value;
                 }
+                if (typeof(TResult) == typeof(int))
+                {
+                    var result = (OracleDecimal)get_last_value(command);
+                    return (TResult)(object)Convert.ToInt32(result.Value);
+                }                
                 return (TResult)get_last_value(command);
             }
         }
