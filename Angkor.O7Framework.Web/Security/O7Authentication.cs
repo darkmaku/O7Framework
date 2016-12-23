@@ -24,5 +24,10 @@ namespace Angkor.O7Framework.Web.Security
             var user = O7JsonSerealizer.Deserialize<O7User>(ticket.UserData);
             return new O7Principal(user.Login, user.Company, user.Branch, user.Name, user.Password);
         }
+
+        public static void SignOut()
+        {
+            FormsAuthentication.SignOut();
+        }
     }
 }

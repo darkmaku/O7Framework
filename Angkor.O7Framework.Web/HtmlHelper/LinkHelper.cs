@@ -14,20 +14,14 @@ namespace Angkor.O7Framework.Web.HtmlHelper
         public static string SourceLink(string controller, string action, params Tuple<string, string>[] parameters)
         {
             var link = SourceLink();
-            var builder = new StringBuilder();
-            for (var i = 0; i < parameters.Length; i++)
-            {
-                var parameter = parameters[i];
-                builder.Append($"{parameter.Item1}={parameter.Item2}");
-            }
-            return $"{link}/{controller}/{action}?{builder}";
-        }
+            var paramter = build_parameters_path(parameters);
+            return $"{link}{controller}/{action}{paramter}";
+        }        
 
         public static string SourceLink()
         {
             var source = get_source();
-            var portPath = !string.IsNullOrEmpty(source.Port) ? $"{source.Port}" : string.Empty;
-            return string.IsNullOrEmpty(portPath) ? $"http://{source.Address}/" : $"http://{source.Address}:{portPath}/";            
+            return build_source(source, string.Empty);
         }
 
         public static IHtmlString JavaScriptLink(this System.Web.Mvc.HtmlHelper helper, string link)
@@ -60,6 +54,18 @@ namespace Angkor.O7Framework.Web.HtmlHelper
             var portPath = !string.IsNullOrEmpty(source.Port) ? $":{source.Port}" : string.Empty;
             var sourcePath = !string.IsNullOrEmpty(source.Source) ? $"/{source.Source}/" : "/";
             return $"http://{source.Address}{portPath}{sourcePath}{link}";        
+        }
+
+        private static string build_parameters_path(params Tuple<string, string>[] parameters)
+        {
+            if (parameters.Length == 0) return string.Empty;
+            var builder = new StringBuilder("?");
+            for (var i = 0; i < parameters.Length; i++)
+            {
+                var parameter = parameters[i];
+                builder.Append($"{parameter.Item1}={parameter.Item2}");
+            }
+            return builder.ToString();
         }
     }
 }

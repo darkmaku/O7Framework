@@ -9,6 +9,7 @@ using Angkor.O7Framework.Data;
 using Angkor.O7Framework.Data.Common;
 using Angkor.O7Framework.Data.Utility;
 using Angkor.O7Framework.Utility;
+using Angkor.O7Framework.Web.HtmlHelper;
 using Newtonsoft.Json;
 using Oracle.ManagedDataAccess.Client;
 
@@ -63,7 +64,7 @@ namespace Angkor.O7Framework.Test
     {
         static void Main()
         {
-            var x = O7JsonSerealizer.Serialize(true);
+            LinkHelper.SourceLink("Security", "Signout");
         }
 //        static void Main()
 //        {
