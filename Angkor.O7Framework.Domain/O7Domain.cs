@@ -8,7 +8,7 @@ namespace Angkor.O7Framework.Domain
     {
         public void Intercept(IInvocation invocation)
         {
-            invocation.Proceed();
+            invocation.Proceed();            
         }
     }
 }
