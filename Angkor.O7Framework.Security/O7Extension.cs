@@ -22,6 +22,17 @@ namespace Angkor.O7Framework.Utility
             }
         }
 
+        public static string GetValueFrom(this string source, string name)
+        {
+            var values = source.Split(';');
+            foreach (var value in values)
+            {
+                var current = value.Split('=');
+                if (current[0] == name) return current[1];
+            }
+            return string.Empty;
+        }
+
         public static string ToUriPath(this string url)
         {
             return replace_percent_encoding(url, new Tuple<string, string>("!", "%21"),

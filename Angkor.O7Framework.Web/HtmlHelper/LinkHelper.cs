@@ -4,6 +4,7 @@ using System;
 using System.Configuration;
 using System.Text;
 using System.Web;
+using System.Web.Mvc;
 using Angkor.O7Framework.Web.Exception;
 using Angkor.O7Framework.Web.Utility;
 
@@ -22,6 +23,11 @@ namespace Angkor.O7Framework.Web.HtmlHelper
         {
             var source = get_source();
             return build_source(source, string.Empty);
+        }
+
+        public static IHtmlString SourceLink(this System.Web.Mvc.HtmlHelper helper, string source)
+        {
+            return new HtmlString($"{SourceLink()}{source}");
         }
 
         public static IHtmlString JavaScriptLink(this System.Web.Mvc.HtmlHelper helper, string link)

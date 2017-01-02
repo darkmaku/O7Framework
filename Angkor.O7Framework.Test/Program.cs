@@ -60,11 +60,17 @@ namespace Angkor.O7Framework.Test
         }
     }
 
+    class io : iop
+    {
+        public string Hola { get; set; }
+    }
+
     class Program
     {
         static void Main()
         {
-            LinkHelper.SourceLink("Security", "Signout");
+            iop x = new io();            
+            var type = x.GetType();            
         }
 //        static void Main()
 //        {
