@@ -10,9 +10,8 @@ namespace TestCastleCore
     public class Program
     {
         static void Main(string[] args)
-        {
-            var generator = new ProxyGenerator();
-            var x = generator.CreateClassProxy<Test>(new Testing());
+        {            
+            var x = new ProxyGenerator().CreateClassProxy<Test>(new Testing());
             var y = x.Exec();
             Console.WriteLine(y);
             Console.ReadKey();
