@@ -30,7 +30,7 @@ namespace Angkor.O7Framework.Data
 
         public TResult ExecuteFunction<TResult>(string name, O7Parameter parameter)
         {
-            Contract.Requires(!string.IsNullOrEmpty(name)&&parameter != null);            
+            Contract.Requires(!string.IsNullOrEmpty(name) && parameter != null);            
             using (var command = _connection.CreateCommand())
             {
                 set_command(command, name, parameter.OracleParameters, get_oracle_type(typeof(TResult)));
