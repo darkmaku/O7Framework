@@ -10,6 +10,7 @@ namespace TestCastleCore
     {
         static void Main(string[] args)
         {
+
         }
     }
 }

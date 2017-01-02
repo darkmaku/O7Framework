@@ -2,6 +2,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Diagnostics.Contracts;
 using Angkor.O7Framework.Data.Common;
 using Angkor.O7Framework.Data.Utility;
@@ -19,11 +20,14 @@ namespace Angkor.O7Framework.Data
             DataBaseValidatorHelper.ValidConnection(connection);
             _connection = new OracleConnection(connection);
             _connection.Open();
+            Contract.Ensures(_connection.State == ConnectionState.Open );
         }
 
         public void Dispose()
         {
+            Contract.Requires(_connection.State == ConnectionState.Open);
             _connection.Dispose();
+            Contract.Ensures(_connection.State == ConnectionState.Closed);
         }
 
         public TResult ExecuteFunction<TResult>(string name) => ExecuteFunction<TResult>(name, new O7Parameter());
@@ -55,7 +59,7 @@ namespace Angkor.O7Framework.Data
         public List<TResult> ExecuteFunction<TResult>(string name, O7Parameter parameter, Type mapperType)
             where TResult : O7Entity
         {
-            Contract.Requires(!string.IsNullOrEmpty(name)&&parameter!=null&&mapperType!=null);
+            Contract.Requires(!string.IsNullOrEmpty(name) && parameter!=null&&mapperType!=null);
             var result = new List<TResult>();
             using (var command = _connection.CreateCommand())
             {
