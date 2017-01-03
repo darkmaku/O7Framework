@@ -11,7 +11,7 @@ namespace Angkor.O7Framework.Data.Utility
 {
     public class O7DbParameterCollection : O7ParameterCollection
     {
-        public O7DbParameterCollection(O7ParameterCollection parameterCollection):base(parameterCollection)
+        public O7DbParameterCollection(O7ParameterCollection parameterCollection) : base(parameterCollection)
         {
         }
 
@@ -50,7 +50,10 @@ namespace Angkor.O7Framework.Data.Utility
             throw O7DataException.MakeMatchException;
         }
 
-        public new static O7DbParameterCollection Make => new O7DbParameterCollection();
-        public new static O7DbParameterCollection MakeFrom(O7ParameterCollection parameterCollection) => new O7DbParameterCollection(parameterCollection);
+        public new static O7DbParameterCollection Make 
+            => new O7DbParameterCollection();
+
+        public new static O7DbParameterCollection MakeFrom(O7ParameterCollection parameterCollection)
+            => new O7DbParameterCollection(parameterCollection);
     }
 }

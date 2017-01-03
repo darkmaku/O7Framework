@@ -17,9 +17,8 @@ namespace Angkor.O7Framework.Data
         
         public O7DataAccess(string connection)
         {            
-            DataBaseValidatorHelper.ValidConnection(connection);
+            DataBaseValidator.ValidConnection(connection);
             Contract.Ensures(_connection.State == ConnectionState.Open);
-
             _connection = new OracleConnection(connection);
             _connection.Open();
            
