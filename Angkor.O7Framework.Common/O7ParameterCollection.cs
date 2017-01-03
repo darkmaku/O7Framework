@@ -8,16 +8,16 @@ namespace Angkor.O7Framework.Common
 
         protected O7ParameterCollection()
         {
-            Parameters = new O7Parameter[_maxLength];
-            _maxLength = 1;
             _length = 0;
+            _maxLength = 1;            
+            Parameters = new O7Parameter[_maxLength];
         }
 
         protected O7ParameterCollection(O7ParameterCollection parameterCollection)
-        {            
-            Parameters = parameterCollection.Parameters;
+        {
             _length = parameterCollection._length;
             _maxLength = parameterCollection._maxLength;
+            Parameters = parameterCollection.Parameters;
         }
 
         public static O7ParameterCollection Make
