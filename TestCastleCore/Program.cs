@@ -3,6 +3,7 @@ using System.Dynamic;
 using System.Reflection;
 using Angkor.O7Framework.Domain;
 using Castle.DynamicProxy;
+using Angkor.O7Framework.Common;
 
 namespace TestCastleCore
 {
@@ -11,7 +12,7 @@ namespace TestCastleCore
         static void Main(string[] args)
         {
             var gen = new ProxyGenerator();
-            var x = gen.CreateClassProxy<Test>(new TestingChild());
+            var x = gen.CreateClassProxy<Test>(new O7Proxy());
             x.Exec("string", 0);
             Console.ReadKey();
         }
@@ -25,24 +26,45 @@ namespace TestCastleCore
         }
     }
 
-    public class TestingChild : O7BaseDomain
+    //public class TestingChild : O7BaseDomain
+    //{
+    //    public override void OnExit(O7Parameter[] obj)
+    //    {
+    //        foreach (O7Parameter parameter in obj)
+    //        {
+    //            Console.WriteLine(parameter.Name);
+    //            Console.WriteLine(parameter.Value);
+    //        }
+    //        Console.WriteLine(obj);
+    //    }
+    //    public override void OnEntry(object objects)
+    //    {            
+    //            Console.WriteLine(objects);            
+    //    }
+    //}
+
+    public class O7Proxy: O7BaseDomain
     {
-        public override void OnExit(ParameterInfo[] obj)
+        public override void OnExit(O7Parameter[] parameters)
         {
-            foreach (ParameterInfo parameter in obj)
+            foreach(O7Parameter parameter in parameters)
             {
                 Console.WriteLine(parameter.Name);
-                Console.WriteLine(parameter.ParameterType);
-            }
-
-            Console.WriteLine(obj);
+                Console.WriteLine(parameter.Value);
+            }                        
         }
-
-        public override void OnEntry(object objects)
+        public override void OnEntry(O7Parameter[] parameters)
         {
-            
-                Console.WriteLine(objects);
-            
+            Console.WriteLine("Hola");
+            foreach(O7Parameter parameter in parameters)
+            {
+                Console.WriteLine(parameter.Name);
+                Console.WriteLine(parameter.Value);
+            }
+        }
+        public override void OnException(Exception exception)
+        {
+            base.OnException(exception);
         }
     }
 

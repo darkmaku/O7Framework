@@ -49,6 +49,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Angkor.O7Framework.Common\Angkor.O7Framework.Common.csproj">
+      <Project>{69706A01-42D2-4782-BB3D-E97BF6BB5FF7}</Project>
+      <Name>Angkor.O7Framework.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Angkor.O7Framework.Domain\Angkor.O7Framework.Domain.csproj">
       <Project>{9d9386d9-976b-4d51-832f-9c61efab323e}</Project>
       <Name>Angkor.O7Framework.Domain</Name>
