@@ -1,8 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Dynamic;
+using System.Reflection;
+using Angkor.O7Framework.Domain;
 using Castle.DynamicProxy;
 
 namespace TestCastleCore
@@ -10,52 +9,42 @@ namespace TestCastleCore
     public class Program
     {
         static void Main(string[] args)
-        {            
-            var x = new ProxyGenerator().CreateClassProxy<Test>(new Testing());
-            var y = x.Exec();
-            Console.WriteLine(y);
+        {
+            var gen = new ProxyGenerator();
+            var x = gen.CreateClassProxy<Test>(new TestingChild());
+            x.Exec("string", 0);
             Console.ReadKey();
         }
     }
 
     public class Test
     {
-        public virtual string Exec()
+        public virtual void Exec(string x, int y)
         {
-            var test = "Test";
-            Console.WriteLine(test);
-            throw new Exception();
-            return test;
+            Console.WriteLine("Exec");            
         }
-
     }
 
-    public class Testing : IInterceptor
+    public class TestingChild : O7BaseDomain
     {
-        public void Intercept(IInvocation invocation)
+        public override void OnExit(ParameterInfo[] obj)
         {
-            try
+            foreach (ParameterInfo parameter in obj)
             {
-                Pre();
-                invocation.Proceed();
-                Post();
-                invocation.ReturnValue = "Hola";
+                Console.WriteLine(parameter.Name);
+                Console.WriteLine(parameter.ParameterType);
+                Console.WriteLine(parameter.);
             }
-            catch
-            {
-                invocation.ReturnValue = "Error";
-            }
+
+            Console.WriteLine(obj);
+        }
+
+        public override void OnEntry(object objects)
+        {
+            
+                Console.WriteLine(objects);
             
         }
-
-        public virtual void Pre()
-        {
-            Console.WriteLine("Pre");
-        }
-
-        public virtual void Post()
-        {
-            Console.WriteLine("Post");
-        }
     }
+
 }
