@@ -12,7 +12,7 @@ namespace TestCastleCore
         static void Main(string[] args)
         {
             var gen = new ProxyGenerator();
-            var x = gen.CreateClassProxy<Test>(new TestingChild());
+            var x = gen.CreateClassProxy<Test>(new O7Proxy());
             x.Exec("string", 0);
             Console.ReadKey();
         }
@@ -26,7 +26,7 @@ namespace TestCastleCore
         }
     }
 
-    public class TestingChild : O7BaseDomain
+    public class O7Proxy : O7BaseDomain
     {
         public override void OnEntry(O7Parameter[] parameters)
         {
@@ -44,6 +44,11 @@ namespace TestCastleCore
                 Console.WriteLine("Name" + parameter.Name);
                 Console.WriteLine("Value" + parameter.Value);
             }
+        }
+
+        public override void OnException(Exception exception)
+        {
+            base.OnException(exception);
         }
     }
 
