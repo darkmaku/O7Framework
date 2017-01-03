@@ -33,7 +33,6 @@ namespace TestCastleCore
             {
                 Console.WriteLine(parameter.Name);
                 Console.WriteLine(parameter.ParameterType);
-                Console.WriteLine(parameter.);
             }
 
             Console.WriteLine(obj);
