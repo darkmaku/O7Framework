@@ -2,6 +2,7 @@
 
 using System.Web.Mvc;
 using Angkor.O7Framework.Domain.Response;
+using System.Diagnostics.Contracts;
 
 namespace Angkor.O7Framework.Web.WebResult
 {
@@ -11,6 +12,8 @@ namespace Angkor.O7Framework.Web.WebResult
 
         public O7JsonResult(O7Response value)
         {
+            Contract.Requires(value != null);
+
             _response = value;
             JsonRequestBehavior = JsonRequestBehavior.AllowGet;
             ContentType = "application/json";

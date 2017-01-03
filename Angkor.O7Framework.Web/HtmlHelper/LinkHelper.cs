@@ -2,6 +2,7 @@
 
 using System;
 using System.Configuration;
+using System.Diagnostics.Contracts;
 using System.Text;
 using System.Web;
 using System.Web.Mvc;
@@ -14,6 +15,8 @@ namespace Angkor.O7Framework.Web.HtmlHelper
     {
         public static string SourceLink(string controller, string action, params Tuple<string, string>[] parameters)
         {
+            Contract.Requires(!string.IsNullOrEmpty(controller) && !string.IsNullOrEmpty(action) );
+
             var link = SourceLink();
             var paramter = build_parameters_path(parameters);
             return $"{link}{controller}/{action}{paramter}";
@@ -31,8 +34,8 @@ namespace Angkor.O7Framework.Web.HtmlHelper
         }
 
         public static IHtmlString JavaScriptLink(this System.Web.Mvc.HtmlHelper helper, string link)
-        {
-            var source = get_source();
+        {            
+            var source = get_source();            
             return new HtmlString($"<script src='{build_source(source, link)}'></script>");
         }
         
@@ -50,8 +53,9 @@ namespace Angkor.O7Framework.Web.HtmlHelper
 
         private static O7WebSource get_source()
         {
+            Contract.Ensures(Contract.Result<O7WebSource>() != null);
+
             var source = ConfigurationManager.GetSection("O7WebSource") as O7WebSource;
-            if (source == null) throw O7WebSourceException.MakeWebSourceException;
             return source;
         }
 

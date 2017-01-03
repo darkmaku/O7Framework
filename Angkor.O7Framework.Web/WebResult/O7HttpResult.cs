@@ -4,6 +4,7 @@ using System.Web.Mvc;
 using Angkor.O7Framework.Domain.Response;
 using Angkor.O7Framework.Web.Base;
 using Angkor.O7Framework.Web.Utility;
+using System.Diagnostics.Contracts;
 
 namespace Angkor.O7Framework.Web.WebResult
 {
@@ -18,6 +19,8 @@ namespace Angkor.O7Framework.Web.WebResult
         public static ActionResult MakeActionResult<TViewModel>(O7Response response, O7ViewModelMapper<TViewModel> mapper) 
             where TViewModel : O7ViewModel
         {
+            Contract.Requires(mapper != null);
+
             var errorResponse = response as O7ErrorResponse;
             if (errorResponse != null) return new O7RedirectResult(errorResponse);            
             return new O7ViewResult(mapper.MapTarget());

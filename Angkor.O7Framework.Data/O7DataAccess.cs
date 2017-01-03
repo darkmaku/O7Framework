@@ -18,23 +18,27 @@ namespace Angkor.O7Framework.Data
         public O7DataAccess(string connection)
         {            
             DataBaseValidatorHelper.ValidConnection(connection);
+            Contract.Ensures(_connection.State == ConnectionState.Open);
+
             _connection = new OracleConnection(connection);
             _connection.Open();
-            Contract.Ensures(_connection.State == ConnectionState.Open );
+           
         }
 
         public void Dispose()
         {
             Contract.Requires(_connection.State == ConnectionState.Open);
-            _connection.Dispose();
             Contract.Ensures(_connection.State == ConnectionState.Closed);
+
+            _connection.Dispose();
         }
 
         public TResult ExecuteFunction<TResult>(string name) => ExecuteFunction<TResult>(name, new O7Parameter());
 
         public TResult ExecuteFunction<TResult>(string name, O7Parameter parameter)
         {
-            Contract.Requires(!string.IsNullOrEmpty(name) && parameter != null);            
+            Contract.Requires(!string.IsNullOrEmpty(name) && parameter != null && this._connection.State == ConnectionState.Open);
+
             using (var command = _connection.CreateCommand())
             {
                 set_command(command, name, parameter.OracleParameters, get_oracle_type(typeof(TResult)));
@@ -59,7 +63,8 @@ namespace Angkor.O7Framework.Data
         public List<TResult> ExecuteFunction<TResult>(string name, O7Parameter parameter, Type mapperType)
             where TResult : O7Entity
         {
-            Contract.Requires(!string.IsNullOrEmpty(name) && parameter!=null&&mapperType!=null);
+            Contract.Requires(!string.IsNullOrEmpty(name) && parameter!=null && mapperType != null && this._connection.State == ConnectionState.Open);
+
             var result = new List<TResult>();
             using (var command = _connection.CreateCommand())
             {

@@ -16,5 +16,7 @@ namespace Angkor.O7Framework.Data.Utility
                 throw new System.Exception();
             Contract.EndContractBlock();
         }
+
+
     }
 }
