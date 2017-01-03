@@ -20,11 +20,14 @@ namespace Angkor.O7Framework.Common
             _maxLength = parameterCollection._maxLength;
         }
 
-        public static O7ParameterCollection Make => new O7ParameterCollection();
-        public static O7ParameterCollection MakeFrom(O7ParameterCollection parameterCollection) => new O7ParameterCollection(parameterCollection);
+        public static O7ParameterCollection Make
+            => new O7ParameterCollection();
 
-        public O7Parameter[] Parameters { get; private set; }
-        
+        public static O7ParameterCollection MakeFrom(O7ParameterCollection parameterCollection) 
+            => new O7ParameterCollection(parameterCollection);
+
+        public O7Parameter[] Parameters { get; private set; } 
+
         public void Add(O7Parameter parameter)
         {
             if(_length >= _maxLength) increase_collection();

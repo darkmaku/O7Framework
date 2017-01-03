@@ -53,6 +53,12 @@
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Angkor.O7Framework.Common\Angkor.O7Framework.Common.csproj">
+      <Project>{69706A01-42D2-4782-BB3D-E97BF6BB5FF7}</Project>
+      <Name>Angkor.O7Framework.Common</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
