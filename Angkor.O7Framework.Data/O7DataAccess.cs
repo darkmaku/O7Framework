@@ -17,8 +17,8 @@ namespace Angkor.O7Framework.Data
         
         public O7DataAccess(string connection)
         {            
-            DataBaseValidator.ValidConnection(connection);
-            Contract.Ensures(_connection.State == ConnectionState.Open);
+            Contract.Requires(O7DataBaseValidator.ValidConnection(connection));
+            Contract.Ensures(O7DataBaseValidator.ConnectionOpen(_connection));
             _connection = new OracleConnection(connection);
             _connection.Open();
            
@@ -26,9 +26,9 @@ namespace Angkor.O7Framework.Data
 
         public void Dispose()
         {
-            Contract.Requires(_connection.State == ConnectionState.Open);
-            Contract.Ensures(_connection.State == ConnectionState.Closed);
-
+            Contract.Requires(O7DataBaseValidator.ConnectionOpen(_connection));
+            //Contract.Ensures(_connection.State == ConnectionState.Closed);
+            Contract.Ensures(O7DataBaseValidator.ConnectionClose(_connection));
             _connection.Dispose();
         }
 
@@ -36,8 +36,9 @@ namespace Angkor.O7Framework.Data
 
         public TResult ExecuteFunction<TResult>(string name, O7Parameter parameter)
         {
-            Contract.Requires(!string.IsNullOrEmpty(name) && parameter != null && this._connection.State == ConnectionState.Open);
-
+            //Contract.Requires(!string.IsNullOrEmpty(name) && parameter != null && this._connection.State == ConnectionState.Open);
+            Contract.Requires(O7DataBaseValidator.ValidName(name) && parameter!=null && O7DataBaseValidator.ConnectionOpen(_connection) );
+            Contract.Invariant(O7DataBaseValidator.ConnectionOpen(_connection));
             using (var command = _connection.CreateCommand())
             {
                 set_command(command, name, parameter.OracleParameters, get_oracle_type(typeof(TResult)));
