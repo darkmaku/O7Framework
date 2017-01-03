@@ -52,6 +52,7 @@
     <Compile Include="Utility\O7Connection.cs" />
     <Compile Include="Utility\O7DataMapper.cs" />
     <Compile Include="Utility\O7DbParameterCollection.cs" />
+    <Compile Include="Utility\O7DbParameterCollection.Implementation.cs" />
     <Compile Include="Utility\O7Provider.cs" />
     <Compile Include="Utility\O7Row.cs" />
   </ItemGroup>
