@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Dynamic;
 using System.Reflection;
+using Angkor.O7Framework.Common;
 using Angkor.O7Framework.Domain;
 using Castle.DynamicProxy;
 
@@ -27,23 +28,22 @@ namespace TestCastleCore
 
     public class TestingChild : O7BaseDomain
     {
-        public override void OnExit(ParameterInfo[] obj)
+        public override void OnEntry(O7Parameter[] parameters)
         {
-            foreach (ParameterInfo parameter in obj)
+            foreach (var parameter in parameters)
             {
-                Console.WriteLine(parameter.Name);
-                Console.WriteLine(parameter.ParameterType);
-                Console.WriteLine(parameter.);
+                Console.WriteLine("Name"+parameter.Name);
+                Console.WriteLine("Value" + parameter.Value);
             }
-
-            Console.WriteLine(obj);
         }
 
-        public override void OnEntry(object objects)
+        public override void OnExit(O7Parameter[] parameters)
         {
-            
-                Console.WriteLine(objects);
-            
+            foreach (var parameter in parameters)
+            {
+                Console.WriteLine("Name" + parameter.Name);
+                Console.WriteLine("Value" + parameter.Value);
+            }
         }
     }
 
