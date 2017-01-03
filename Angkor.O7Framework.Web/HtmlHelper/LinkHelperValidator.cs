@@ -20,7 +20,7 @@ namespace Angkor.O7Framework.Web.HtmlHelper
         }
         public static bool ValidParameters(O7WebSource source, string link)
         {
-            return source != null && !String.IsNullOrEmpty(link) && !String.IsNullOrEmpty(media);
+            return source != null && !String.IsNullOrEmpty(link);
         }
     }
 }

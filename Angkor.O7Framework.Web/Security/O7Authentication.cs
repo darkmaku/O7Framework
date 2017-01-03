@@ -1,6 +1,7 @@
 ﻿// Create by Felix A. Bueno
 
 using System;
+using System.Diagnostics.Contracts;
 using System.Web;
 using System.Web.Security;
 using Angkor.O7Framework.Utility;
@@ -11,6 +12,8 @@ namespace Angkor.O7Framework.Web.Security
     {
         public static HttpCookie Generate(string company, string branch, string login, string name, string password)
         {
+            Contract.Requires(O7SecurityHelperValidator.ValidParameters(company,branch,login,name,password));
+            Contract.Ensures(Contract.Result<HttpCookie>()!=null);
             var user = new O7User(company, branch, login, name, password);
             var userJson = O7JsonSerealizer.Serialize(user);
             var ticket = new FormsAuthenticationTicket(1, user.Login, DateTime.Now, DateTime.Now.AddMinutes(20), false, userJson);
@@ -20,6 +23,7 @@ namespace Angkor.O7Framework.Web.Security
 
         public static O7Principal Extract(HttpCookie cookie)
         {
+            Contract.Requires(O7SecurityHelperValidator.ValidParameters(cookie));
             var ticket = FormsAuthentication.Decrypt(cookie.Value);
             var user = O7JsonSerealizer.Deserialize<O7User>(ticket.UserData);
             return new O7Principal(user.Login, user.Company, user.Branch, user.Name, user.Password);
