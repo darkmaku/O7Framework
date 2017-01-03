@@ -32,7 +32,8 @@ namespace Angkor.O7Framework.Data
             _connection.Dispose();
         }
 
-        public TResult ExecuteFunction<TResult>(string name) => ExecuteFunction<TResult>(name, O7DbParameterCollection.Make);
+        public TResult ExecuteFunction<TResult>(string name) 
+            => ExecuteFunction<TResult>(name, O7DbParameterCollection.Make);
 
         public TResult ExecuteFunction<TResult>(string name, O7DbParameterCollection parametersCollection)
         {
