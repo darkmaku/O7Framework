@@ -68,12 +68,14 @@
     <Compile Include="Base\O7ViewModel.cs" />
     <Compile Include="Exception\O7WebSourceException.cs" />
     <Compile Include="HtmlHelper\LinkHelper.cs" />
+    <Compile Include="HtmlHelper\LinkHelperValidator.cs" />
     <Compile Include="Security\O7Authentication.cs" />
     <Compile Include="Base\O7Controller.cs" />
     <Compile Include="Security\O7Principal.cs" />
     <Compile Include="Security\O7User.cs" />
     <Compile Include="Base\O7ViewPage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Security\O7SecurityHelperValidator.cs" />
     <Compile Include="WebResult\O7HttpResult.cs" />
     <Compile Include="Utility\O7ViewModelMapper.cs" />
     <Compile Include="Utility\O7WebSource.cs" />
