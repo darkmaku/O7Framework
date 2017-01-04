@@ -7,7 +7,7 @@ using Castle.DynamicProxy;
 
 namespace Angkor.O7Framework.Domain
 {
-    public class O7BaseDomain : IInterceptor
+    public abstract class O7AbstractDomain : IInterceptor
     {
         private IInvocation _invocation;
 

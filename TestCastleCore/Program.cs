@@ -32,7 +32,7 @@ namespace TestCastleCore
 
     }
 
-    public class TestingChild : O7BaseDomain
+    public class TestingChild : O7AbstractDomain
     {
         public override void OnEntry(O7Parameter[] parameters)
         {
