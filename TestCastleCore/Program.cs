@@ -11,9 +11,8 @@ namespace TestCastleCore
     {
         static void Main(string[] args)
         {
-            var gen = new ProxyGenerator();
-            var x = gen.CreateClassProxy<Test>(new TestingChild());            
-            Console.WriteLine(x.Build());
+            Test x = O7ClassLifeCycle.InstanceDomain<Test>();
+            x.Exec("hola", 5);
             Console.ReadKey();
         }
     }
@@ -31,32 +30,4 @@ namespace TestCastleCore
         }
 
     }
-
-    public class TestingChild : O7AbstractDomain
-    {
-        public override void OnEntry(O7Parameter[] parameters)
-        {
-            foreach (var parameter in parameters)
-            {
-                Console.WriteLine("Name"+parameter.Name);
-                Console.WriteLine("Value" + parameter.Value);
-            }
-        }
-
-        public override void OnExit(O7Parameter[] parameters)
-        {
-            foreach (var parameter in parameters)
-            {
-                Console.WriteLine("Name" + parameter.Name);
-                Console.WriteLine("Value" + parameter.Value);
-            }
-            SetReturnValue("oliwi");
-        }
-
-        public override void OnException(Exception exception)
-        {
-            Console.WriteLine(exception.Message);
-        }
-    }
-
 }
