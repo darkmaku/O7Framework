@@ -33,7 +33,6 @@
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="O7DataBaseValidator.cs" />
     <Compile Include="O7Parameter.cs" />
     <Compile Include="O7ParameterCollection.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

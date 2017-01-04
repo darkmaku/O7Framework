@@ -1,4 +1,5 @@
-﻿// Create by Felix A. Bueno
+﻿
+// Create by Felix A. Bueno
 
 using System.Diagnostics.Contracts;
 

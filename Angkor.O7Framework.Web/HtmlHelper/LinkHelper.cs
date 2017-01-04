@@ -32,14 +32,14 @@ namespace Angkor.O7Framework.Web.HtmlHelper
 
         public static IHtmlString SourceLink(this System.Web.Mvc.HtmlHelper helper, string source)
         {
-            Contract.Requires(LinkHelperValidator.ValidParameters(helper,source));
+            Contract.Requires(LinkValidator.ValidParameters(helper,source));
             Contract.Ensures(Contract.Result<IHtmlString>() != null);
             return new HtmlString($"{SourceLink()}{source}");
         }
 
         public static IHtmlString JavaScriptLink(this System.Web.Mvc.HtmlHelper helper, string link)
         {            
-            Contract.Requires(LinkHelperValidator.ValidParameters(helper,link));
+            Contract.Requires(LinkValidator.ValidParameters(helper,link));
             Contract.Ensures(Contract.Result<HtmlString>()!=null);
             var source = get_source();            
             return new HtmlString($"<script src='{build_source(source, link)}'></script>");
@@ -47,7 +47,7 @@ namespace Angkor.O7Framework.Web.HtmlHelper
         
         public static IHtmlString StyleLink(this System.Web.Mvc.HtmlHelper helper, string link)
         {
-            Contract.Requires(LinkHelperValidator.ValidParameters(helper,link));
+            Contract.Requires(LinkValidator.ValidParameters(helper,link));
             Contract.Ensures(Contract.Result<HtmlString>()!=null);
             var source = get_source();
             return new HtmlString($"<link href='{build_source(source, link)}' rel='stylesheet' />");
@@ -55,7 +55,7 @@ namespace Angkor.O7Framework.Web.HtmlHelper
 
         public static IHtmlString StyleLink(this System.Web.Mvc.HtmlHelper helper, string link, string mediaType)
         {
-            Contract.Requires(LinkHelperValidator.ValidParameters(helper,link,mediaType));
+            Contract.Requires(LinkValidator.ValidParameters(helper,link,mediaType));
             Contract.Ensures(Contract.Result<HtmlString>()!=null);
             var source = get_source();
             return new HtmlString($"<link href='{build_source(source, link)}' rel='stylesheet' media='{mediaType}' />");
@@ -70,7 +70,7 @@ namespace Angkor.O7Framework.Web.HtmlHelper
 
         private static string build_source(O7WebSource source, string link)
         {
-            Contract.Requires(LinkHelperValidator.ValidParametersSource(source,link));
+            Contract.Requires(LinkValidator.ValidParametersSource(source,link));
             Contract.Ensures(Contract.Result<O7WebSource>() != null);
             var portPath = !string.IsNullOrEmpty(source.Port) ? $":{source.Port}" : string.Empty;
             var sourcePath = !string.IsNullOrEmpty(source.Source) ? $"/{source.Source}/" : "/";

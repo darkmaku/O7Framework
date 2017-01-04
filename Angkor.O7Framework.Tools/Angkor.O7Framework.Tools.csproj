@@ -4,14 +4,13 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{6CE0C6E6-55C7-42C9-BFDF-D51FB14CE6B0}</ProjectGuid>
+    <ProjectGuid>{706D7AB6-3A98-4CE3-A18D-A400A554A1A2}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Angkor.O7Framework.Data</RootNamespace>
-    <AssemblyName>Angkor.O7Framework.Data</AssemblyName>
-    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <RootNamespace>Angkor.O7Framework.Tools</RootNamespace>
+    <AssemblyName>Angkor.O7Framework.Tools</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -31,42 +30,42 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Oracle.ManagedDataAccess, Version=4.121.2.0, Culture=neutral, PublicKeyToken=89b483f429c47342, processorArchitecture=MSIL">
-      <HintPath>..\packages\Oracle.ManagedDataAccess.12.1.24160719\lib\net40\Oracle.ManagedDataAccess.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="System" />
-    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.OracleClient" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Common\O7Entity.cs" />
-    <Compile Include="Exception\O7DataException.cs" />
-    <Compile Include="O7DataAccess.cs" />
-    <Compile Include="O7DataAccess.Implementation.cs" />
-    <Compile Include="O7DataAccessService.cs" />
+    <Compile Include="LinkValidator.cs" />
+    <Compile Include="O7DataBaseValidator.cs" />
+    <Compile Include="O7SecurityHelperValidator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Utility\O7Connection.cs" />
-    <Compile Include="Utility\O7DataBaseValidator.cs" />
-    <Compile Include="Utility\O7DataMapper.cs" />
-    <Compile Include="Utility\O7DbParameterCollection.cs" />
-    <Compile Include="Utility\O7DbParameterCollection.Implementation.cs" />
-    <Compile Include="Utility\O7Provider.cs" />
-    <Compile Include="Utility\O7Row.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="App.config" />
-    <None Include="packages.config" />
+    <Compile Include="StringsValidator.cs" />
+    <Compile Include="UtilityHelper.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Angkor.O7Framework.Common\Angkor.O7Framework.Common.csproj">
-      <Project>{69706A01-42D2-4782-BB3D-E97BF6BB5FF7}</Project>
+      <Project>{69706a01-42d2-4782-bb3d-e97bf6bb5ff7}</Project>
       <Name>Angkor.O7Framework.Common</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Angkor.O7Framework.Data\Angkor.O7Framework.Data.csproj">
+      <Project>{6ce0c6e6-55c7-42c9-bfdf-d51fb14ce6b0}</Project>
+      <Name>Angkor.O7Framework.Data</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Angkor.O7Framework.Security\Angkor.O7Framework.Utility.csproj">
-      <Project>{C5040A3E-40CE-481F-B1D9-2056D642D937}</Project>
+      <Project>{c5040a3e-40ce-481f-b1d9-2056d642d937}</Project>
       <Name>Angkor.O7Framework.Utility</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Angkor.O7Framework.Web\Angkor.O7Framework.Web.csproj">
+      <Project>{eb18d8f8-fa06-4255-b02e-249ab2d60ce0}</Project>
+      <Name>Angkor.O7Framework.Web</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
