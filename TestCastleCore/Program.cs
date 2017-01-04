@@ -11,7 +11,7 @@ namespace TestCastleCore
     {
         static void Main(string[] args)
         {
-            Test x = O7ClassLifeCycle.InstanceDomain<Test>();
+            Test x = O7DomainBuilder.Build<Test>();
             x.Exec("hola", 5);
             Console.ReadKey();
         }
