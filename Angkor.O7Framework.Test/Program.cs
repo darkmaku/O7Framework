@@ -65,13 +65,46 @@ namespace Angkor.O7Framework.Test
         public string Hola { get; set; }
     }
 
+    class testingx
+    {
+        private testingx()
+        {
+            Console.WriteLine("Naci");
+        }
+
+        ~testingx()
+        {
+            Console.WriteLine("Mori");    
+        }
+
+        public static void Destroy()
+        {
+            GC.Collect();
+        }
+
+        public static testingx Make()
+        {
+            return new testingx();
+        }
+
+    }
+
     class Program
     {
         static void Main()
         {
-            iop x = new io();            
-            var type = x.GetType();            
+            Test();
+            
+            Console.ReadKey();
         }
+
+        private static void Test()
+        {
+            var y = testingx.Make();
+            y = null;
+            testingx.Destroy();
+        }
+
 //        static void Main()
 //        {
 //            var data = "Data Source = 192.168.1.35:1521/UDEP2015; User Id = CN01; Password = CN01;";

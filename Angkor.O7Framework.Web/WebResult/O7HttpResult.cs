@@ -20,7 +20,6 @@ namespace Angkor.O7Framework.Web.WebResult
             where TViewModel : O7ViewModel
         {
             Contract.Requires(mapper != null);
-
             var errorResponse = response as O7ErrorResponse;
             if (errorResponse != null) return new O7RedirectResult(errorResponse);            
             return new O7ViewResult(mapper.MapTarget());

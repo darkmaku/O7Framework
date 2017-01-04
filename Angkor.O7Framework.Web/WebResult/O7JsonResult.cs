@@ -13,7 +13,6 @@ namespace Angkor.O7Framework.Web.WebResult
         public O7JsonResult(O7Response value)
         {
             Contract.Requires(value != null);
-
             _response = value;
             JsonRequestBehavior = JsonRequestBehavior.AllowGet;
             ContentType = "application/json";
