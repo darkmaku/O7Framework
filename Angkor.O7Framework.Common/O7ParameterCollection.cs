@@ -9,7 +9,7 @@ namespace Angkor.O7Framework.Common
         protected O7ParameterCollection()
         {
             _length = 0;
-            _maxLength = 1;            
+            _maxLength = 0;            
             Parameters = new O7Parameter[_maxLength];
         }
 
@@ -37,7 +37,7 @@ namespace Angkor.O7Framework.Common
 
         private void increase_collection()
         {
-            var increase = _maxLength + 2;
+            var increase = _maxLength + 1;
             var temporal = new O7Parameter[increase];
             for (var i = 0; i < _maxLength; i++) temporal[i] = Parameters[i];
             Parameters = temporal;

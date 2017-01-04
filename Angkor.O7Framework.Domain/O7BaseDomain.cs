@@ -9,6 +9,8 @@ namespace Angkor.O7Framework.Domain
 {
     public class O7BaseDomain : IInterceptor
     {
+        private IInvocation _invocation;
+
         public virtual void OnEntry(O7Parameter[] parameters)
         {
         }
@@ -21,13 +23,19 @@ namespace Angkor.O7Framework.Domain
         {
         }
 
+        public void SetReturnValue(object returnValue)
+        {
+            _invocation.ReturnValue = returnValue;
+        }
+
         public void Intercept(IInvocation invocation)
         {
             try
             {
-                OnEntry(build_parameters(invocation));
+                _invocation = invocation;
+                OnEntry(build_parameters(_invocation));
                 invocation.Proceed();
-                OnExit(build_parameters(invocation));
+                OnExit(build_parameters(_invocation));
             }
             catch (Exception exception)
             {
