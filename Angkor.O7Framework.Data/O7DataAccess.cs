@@ -8,6 +8,7 @@ using Angkor.O7Framework.Data.Common;
 using Angkor.O7Framework.Data.Utility;
 using Oracle.ManagedDataAccess.Client;
 using Oracle.ManagedDataAccess.Types;
+using Angkor.O7Framework.Common;
 
 namespace Angkor.O7Framework.Data
 {
@@ -26,8 +27,6 @@ namespace Angkor.O7Framework.Data
 
         public void Dispose()
         {
-            Contract.Requires(_connection.State == ConnectionState.Open);
-            Contract.Ensures(_connection.State == ConnectionState.Closed);
 
             _connection.Dispose();
         }

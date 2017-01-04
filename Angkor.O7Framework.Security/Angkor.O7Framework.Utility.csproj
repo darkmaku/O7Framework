@@ -40,6 +40,13 @@
     <Compile Include="O7ParamBuilder.cs" />
     <Compile Include="O7ParameterValidator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UtilityHelper.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Angkor.O7Framework.Common\Angkor.O7Framework.Common.csproj">
+      <Project>{69706a01-42d2-4782-bb3d-e97bf6bb5ff7}</Project>
+      <Name>Angkor.O7Framework.Common</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

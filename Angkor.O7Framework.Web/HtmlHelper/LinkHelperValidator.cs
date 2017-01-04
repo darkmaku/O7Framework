@@ -4,23 +4,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Angkor.O7Framework.Web.Utility;
-
+using Angkor.O7Framework.Common.Validator;
 namespace Angkor.O7Framework.Web.HtmlHelper
 {
     public class LinkHelperValidator
     {
-        public static bool ValidParameters(System.Web.Mvc.HtmlHelper helper, string link)
+        public static bool ValidParameters(System.Web.Mvc.HtmlHelper helper, params string[] strings)
         {
-            return helper != null && !String.IsNullOrEmpty(link);
+            return helper != null && StringsValidator.AllNotNull(strings);
         }
-
-        public static bool ValidParameters(System.Web.Mvc.HtmlHelper helper, string link,string media)
+        public static bool ValidParametersSource(O7WebSource source, params string[] strings)
         {
-            return helper != null && !String.IsNullOrEmpty(link) && !String.IsNullOrEmpty(media);
-        }
-        public static bool ValidParameters(O7WebSource source, string link)
-        {
-            return source != null && !String.IsNullOrEmpty(link);
+            return source != null && StringsValidator.AllNotNull(strings);
         }
     }
 }

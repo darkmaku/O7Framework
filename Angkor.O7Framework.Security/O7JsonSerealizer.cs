@@ -2,6 +2,7 @@
 
 using System;
 using System.Collections;
+using System.Diagnostics.Contracts;
 using System.Reflection;
 using System.Text;
 
@@ -17,6 +18,7 @@ namespace Angkor.O7Framework.Utility
 
         public static TResult Deserialize<TResult>(string json) where TResult : class
         {
+            Contract.Ensures(UtilityHelper.ValidTResultResult(Contract.Result<TResult>()));
             var typeResult = typeof(TResult);
             var result = Activator.CreateInstance(typeResult);
             object_initialize(result, typeResult.GetProperties(), json);

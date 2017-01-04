@@ -23,7 +23,7 @@ namespace Angkor.O7Framework.Web.Security
 
         public static O7Principal Extract(HttpCookie cookie)
         {
-            Contract.Requires(O7SecurityHelperValidator.ValidParameters(cookie));
+            Contract.Requires(O7SecurityHelperValidator.ValidCookie(cookie));
             var ticket = FormsAuthentication.Decrypt(cookie.Value);
             var user = O7JsonSerealizer.Deserialize<O7User>(ticket.UserData);
             return new O7Principal(user.Login, user.Company, user.Branch, user.Name, user.Password);

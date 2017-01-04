@@ -1,6 +1,7 @@
 ﻿// Create by Felix A. Bueno
 
 using System;
+using System.Diagnostics.Contracts;
 using System.IO;
 using System.Security.Cryptography;
 using System.Text;
@@ -14,14 +15,16 @@ namespace Angkor.O7Framework.Utility
 
         public O7Cryptography(string key)
         {
-            if(string.IsNullOrWhiteSpace(key)) throw new ArgumentNullException(nameof(key));
+            //if(string.IsNullOrWhiteSpace(key)) throw new ArgumentNullException(nameof(key));
+            Contract.Requires(UtilityHelper.ValidStringParameter(key));
             _key = new Rfc2898DeriveBytes(key, _salt);
         }
 
         public string Encrypt(string value)
         {
-            if (string.IsNullOrEmpty(value)) throw new ArgumentNullException(nameof(value));
-            
+            //if (string.IsNullOrEmpty(value)) throw new ArgumentNullException(nameof(value));
+            Contract.Requires(UtilityHelper.ValidStringParameter(value));
+            Contract.Ensures(UtilityHelper.ValidStringResult(Contract.Result<string>()));
             var cryptoManaged = make_rijndael();
             var encryptor = cryptoManaged.CreateEncryptor(cryptoManaged.Key, cryptoManaged.IV);
             var result = encrypt_string(value, cryptoManaged, encryptor);
@@ -31,8 +34,9 @@ namespace Angkor.O7Framework.Utility
 
         public string Decrypt(string value)
         {
-            if (string.IsNullOrEmpty(value)) throw new ArgumentNullException(nameof(value));
-
+            //if (string.IsNullOrEmpty(value)) throw new ArgumentNullException(nameof(value));
+            Contract.Requires(UtilityHelper.ValidStringParameter(value));
+            Contract.Ensures(UtilityHelper.ValidStringResult(Contract.Result<string>()));
             var cryptoManaged = make_rijndael();
             var bytes = Convert.FromBase64String(value);
             var result = decrypt_string(bytes, cryptoManaged);
@@ -42,6 +46,7 @@ namespace Angkor.O7Framework.Utility
 
         private string decrypt_string(byte[] bytes, SymmetricAlgorithm cryptoManaged)
         {
+            Contract.Ensures(UtilityHelper.ValidStringResult(Contract.Result<string>()));
             using (var memoryStream = new MemoryStream(bytes))
             {
                 cryptoManaged.IV = read_bytes(memoryStream);
@@ -54,6 +59,7 @@ namespace Angkor.O7Framework.Utility
 
         private string encrypt_string(string value, SymmetricAlgorithm cryptoManaged, ICryptoTransform cryptoTransform)
         {
+            Contract.Ensures(UtilityHelper.ValidStringResult(Contract.Result<string>()));
             using (var memoryStream = new MemoryStream())
             {
                 memoryStream.Write(BitConverter.GetBytes(cryptoManaged.IV.Length), 0, sizeof(int));
@@ -75,6 +81,7 @@ namespace Angkor.O7Framework.Utility
 
         private static byte[] read_bytes(Stream s)
         {
+            Contract.Requires(UtilityHelper.ValidStream(s));
             var rawLength = new byte[sizeof(int)];
             if (s.Read(rawLength, 0, rawLength.Length) != rawLength.Length)            
                 throw new SystemException("Stream did not contain properly formatted byte array");

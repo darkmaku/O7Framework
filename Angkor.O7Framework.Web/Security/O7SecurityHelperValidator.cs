@@ -1,17 +1,17 @@
 ﻿using System;
 using System.Web;
+using Angkor.O7Framework.Common.Validator;
 
 namespace Angkor.O7Framework.Web.Security
 {
     public static class O7SecurityHelperValidator
     {
-        public static bool ValidParameters(string company, string branch, string login, string name, string password)
+        public static bool ValidParameters(params string[] strings)
         {
-            return !String.IsNullOrEmpty(company) && !String.IsNullOrEmpty(branch) && !String.IsNullOrEmpty(login) &&
-                   !String.IsNullOrEmpty(name) && !String.IsNullOrEmpty(password);
+            return StringsValidator.AllNotNull(strings);
         }
 
-        public static bool ValidParameters(HttpCookie cookie)
+        public static bool ValidCookie(HttpCookie cookie)
         {
             return cookie != null;
         }

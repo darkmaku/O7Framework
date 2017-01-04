@@ -70,7 +70,7 @@ namespace Angkor.O7Framework.Web.HtmlHelper
 
         private static string build_source(O7WebSource source, string link)
         {
-            Contract.Requires(LinkHelperValidator.ValidParameters(source,link));
+            Contract.Requires(LinkHelperValidator.ValidParametersSource(source,link));
             Contract.Ensures(Contract.Result<O7WebSource>() != null);
             var portPath = !string.IsNullOrEmpty(source.Port) ? $":{source.Port}" : string.Empty;
             var sourcePath = !string.IsNullOrEmpty(source.Source) ? $"/{source.Source}/" : "/";
