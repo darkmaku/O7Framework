@@ -18,8 +18,8 @@ namespace Angkor.O7Framework.Data
         
         public O7DataAccess(string connection)
         {
-            O7DataBaseValidator.ValidConnection(connection);
-            Contract.Ensures(_connection.State == ConnectionState.Open);
+            Contract.Requires(O7DataBaseValidator.ValidConnection(connection));
+            //Contract.Ensures(_connection.State == ConnectionState.Open);
             _connection = new OracleConnection(connection);
             _connection.Open();
            
@@ -36,7 +36,7 @@ namespace Angkor.O7Framework.Data
 
         public TResult ExecuteFunction<TResult>(string name, O7DbParameterCollection parametersCollection)
         {
-            Contract.Requires(!string.IsNullOrEmpty(name) && parametersCollection != null && this._connection.State == ConnectionState.Open);
+            Contract.Requires(O7DataBaseValidator.ValidExecuteParameters(name,parametersCollection));
             using (var command = _connection.CreateCommand())
             {
                 set_command(command, name, parametersCollection.DbParameters, get_oracle_type(typeof(TResult)));
@@ -61,7 +61,7 @@ namespace Angkor.O7Framework.Data
         public List<TResult> ExecuteFunction<TResult>(string name, O7DbParameterCollection parametersCollection, Type mapperType)
             where TResult : O7Entity
         {
-            Contract.Requires(!string.IsNullOrEmpty(name) && parametersCollection != null && mapperType != null && this._connection.State == ConnectionState.Open);
+            Contract.Requires(O7DataBaseValidator.ValidExecuteParameters(name,parametersCollection,mapperType));
 
             var result = new List<TResult>();
             using (var command = _connection.CreateCommand())

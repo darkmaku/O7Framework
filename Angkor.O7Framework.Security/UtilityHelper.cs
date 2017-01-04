@@ -23,9 +23,10 @@ namespace Angkor.O7Framework.Utility
         public static bool ValidStream(Stream s)
         {
             var rawLength = new byte[sizeof(int)];
-            return s.Read(new byte[sizeof (int)], 0, rawLength.Length) != rawLength.Length);
+            return s.Read(new byte[sizeof (int)], 0, rawLength.Length) != rawLength.Length;
         }
 
         public static bool ValidTResultResult(object r) => r != null;
+        
     }
 }

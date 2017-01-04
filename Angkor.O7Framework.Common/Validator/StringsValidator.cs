@@ -10,7 +10,7 @@ namespace Angkor.O7Framework.Common.Validator
     {
         public static bool AllNotNull(params string[] strings)
         {
-            return strings.All(s => s != null);
+            return strings.All(s => !string.IsNullOrEmpty(s));
         }
     }
 }
