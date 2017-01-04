@@ -2,41 +2,45 @@
 
 using System;
 using System.Collections.Generic;
-using System.Data;
 using System.Diagnostics.Contracts;
+using Angkor.O7Framework.Common.Validator;
 using Angkor.O7Framework.Data.Common;
 using Angkor.O7Framework.Data.Utility;
 using Oracle.ManagedDataAccess.Client;
 using Oracle.ManagedDataAccess.Types;
-using Angkor.O7Framework.Common;
 
 namespace Angkor.O7Framework.Data
 {
-    public partial class O7DataAccess : IDisposable
+    public partial class O7DataAccess
     {
-        private readonly OracleConnection _connection;
         
+        private readonly OracleConnection _connection;
+
+        [ContractInvariantMethod]
+        private void connection_invariant()
+        {
+            Contract.Invariant(O7DataBaseValidator.ConnectionIsOpened(_connection));
+        }
+
         public O7DataAccess(string connection)
         {
             Contract.Requires(O7DataBaseValidator.ValidConnection(connection));
-            //Contract.Ensures(_connection.State == ConnectionState.Open);
             _connection = new OracleConnection(connection);
             _connection.Open();
-           
         }
 
-        public void Dispose()
+        ~O7DataAccess()
         {
-
             _connection.Dispose();
         }
+        
 
         public TResult ExecuteFunction<TResult>(string name) 
             => ExecuteFunction<TResult>(name, O7DbParameterCollection.Make);
 
         public TResult ExecuteFunction<TResult>(string name, O7DbParameterCollection parametersCollection)
         {
-            Contract.Requires(O7DataBaseValidator.ValidExecuteParameters(name,parametersCollection));
+            Contract.Requires(ContractValidator.StringIsNotNullOrEmpty(name) && parametersCollection != null);
             using (var command = _connection.CreateCommand())
             {
                 set_command(command, name, parametersCollection.DbParameters, get_oracle_type(typeof(TResult)));
@@ -61,8 +65,7 @@ namespace Angkor.O7Framework.Data
         public List<TResult> ExecuteFunction<TResult>(string name, O7DbParameterCollection parametersCollection, Type mapperType)
             where TResult : O7Entity
         {
-            Contract.Requires(O7DataBaseValidator.ValidExecuteParameters(name,parametersCollection,mapperType));
-
+            Contract.Requires(ContractValidator.StringIsNotNullOrEmpty(name) && parametersCollection != null && mapperType != null);
             var result = new List<TResult>();
             using (var command = _connection.CreateCommand())
             {

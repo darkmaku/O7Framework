@@ -34,6 +34,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="O7Cryptography.cs" />
+    <Compile Include="O7Cryptography.Implementation.cs" />
     <Compile Include="O7Extension.cs" />
     <Compile Include="O7JsonSerealizer.cs" />
     <Compile Include="O7Mapper.cs" />
