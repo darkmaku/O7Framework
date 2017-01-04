@@ -12,5 +12,8 @@ namespace Angkor.O7Framework.Common.Validator
             }
             return true;
         }
+
+        public static bool ValidTResultResult(object result) => result != null;
+
     }
 }
