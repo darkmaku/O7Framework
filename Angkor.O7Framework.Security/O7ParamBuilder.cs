@@ -1,6 +1,7 @@
 ﻿// Create by Felix A. Bueno
 
 using System.Diagnostics.Contracts;
+using Angkor.O7Framework.Common.Validator;
 
 namespace Angkor.O7Framework.Utility
 {
@@ -20,13 +21,13 @@ namespace Angkor.O7Framework.Utility
 
         public void AppendParameter(string name, string value)
         {
-            Contract.Requires(UtilityHelper.ValidStringParameter(name,value));
+            Contract.Requires(ContractValidator.StringIsNotNullOrEmpty(name,value));
             _parameterUrl = string.Concat(_parameterUrl, string.IsNullOrEmpty(_parameterUrl) ? $"{name}={value}" : $"&{name}={value}");
         }
 
         public string GetParameterValue(string name)
         {
-            Contract.Requires(UtilityHelper.ValidStringParameter(name));
+            Contract.Requires(ContractValidator.StringIsNotNullOrEmpty(name));
             string[] parameters = _parameterUrl.Split ('&');
             for (var i = 0; i < parameters.Length; i++)
             {

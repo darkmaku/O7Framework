@@ -13,7 +13,16 @@ namespace Angkor.O7Framework.Common.Validator
             return true;
         }
 
-        public static bool ValidTResultResult(object result) => result != null;
+        public static bool StringIsSource(string source)
+        {
+            return source.Contains("=");
+        }
+
+        public static bool StringIsJson(string value)
+        {
+            if(string.IsNullOrEmpty(value)) return false;
+            return value.Contains("{") && value.Contains("}") && value.Contains("\"") && value.Contains(":");
+        }
 
     }
 }
