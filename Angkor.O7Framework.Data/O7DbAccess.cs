@@ -4,7 +4,8 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics.Contracts;
 using Angkor.O7Framework.Common.Validator;
-using Angkor.O7Framework.Data.Utility;
+using Angkor.O7Framework.Data.Tool;
+using Angkor.O7Framework.Data.Validator;
 using Oracle.ManagedDataAccess.Client;
 using Oracle.ManagedDataAccess.Types;
 

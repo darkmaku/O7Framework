@@ -1,10 +1,10 @@
-﻿// Create by Felix A. Bueno
+// Create by Felix A. Bueno
 
 using System;
 using System.Data;
 using System.Reflection;
 using Angkor.O7Framework.Data.Exception;
-using Angkor.O7Framework.Data.Utility;
+using Angkor.O7Framework.Data.Tool;
 using Oracle.ManagedDataAccess.Client;
 using Oracle.ManagedDataAccess.Types;
 

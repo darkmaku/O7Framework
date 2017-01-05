@@ -17,7 +17,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestCastleCore", "TestCastl
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Angkor.O7Framework.Common", "Angkor.O7Framework.Common\Angkor.O7Framework.Common.csproj", "{69706A01-42D2-4782-BB3D-E97BF6BB5FF7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Angkor.O7Framework.Infraestructure", "Angkor.O7Framework.Infraestructure\Angkor.O7Framework.Infraestructure.csproj", "{2839E270-28C7-4031-B2E4-C97C61B66619}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Angkor.O7Framework.Infrastructure", "Angkor.O7Framework.Infraestructure\Angkor.O7Framework.Infrastructure.csproj", "{2839E270-28C7-4031-B2E4-C97C61B66619}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

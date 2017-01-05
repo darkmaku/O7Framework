@@ -1,5 +1,5 @@
 ﻿// Create by Felix A. Bueno
-namespace Angkor.O7Framework.Common
+namespace Angkor.O7Framework.Common.Model
 {
     public class O7ParameterCollection
     {

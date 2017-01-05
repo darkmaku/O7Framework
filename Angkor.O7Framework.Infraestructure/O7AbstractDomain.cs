@@ -2,10 +2,10 @@
 
 using System;
 using System.Reflection;
+using Angkor.O7Framework.Common.Model;
 using Castle.DynamicProxy;
-using Angkor.O7Framework.Common;
 
-namespace Angkor.O7Framework.Infraestructure
+namespace Angkor.O7Framework.Infrastructure
 {
     public abstract class O7AbstractDomain : IInterceptor
     {

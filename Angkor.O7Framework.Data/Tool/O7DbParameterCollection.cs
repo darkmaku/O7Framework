@@ -1,10 +1,10 @@
 ﻿// Create by Felix A. Bueno
 
 using System.Linq;
-using Angkor.O7Framework.Common;
+using Angkor.O7Framework.Common.Model;
 using Oracle.ManagedDataAccess.Client;
 
-namespace Angkor.O7Framework.Data.Utility
+namespace Angkor.O7Framework.Data.Tool
 {
     public partial class O7DbParameterCollection : O7ParameterCollection
     {        

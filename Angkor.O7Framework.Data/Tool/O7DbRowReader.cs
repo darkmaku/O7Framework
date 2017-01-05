@@ -1,8 +1,8 @@
-﻿using System;
+using System;
 using Angkor.O7Framework.Data.Exception;
 using Oracle.ManagedDataAccess.Client;
 
-namespace Angkor.O7Framework.Data.Utility
+namespace Angkor.O7Framework.Data.Tool
 {
     public class O7DbRowReader
     {

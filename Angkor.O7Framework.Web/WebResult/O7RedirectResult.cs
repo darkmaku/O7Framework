@@ -3,8 +3,8 @@
 using System;
 using System.Diagnostics.Contracts;
 using System.Web.Mvc;
+using Angkor.O7Framework.Common.Model;
 using Angkor.O7Framework.Common.Validator;
-using Angkor.O7Framework.Domain.Response;
 using Angkor.O7Framework.Web.HtmlHelper;
 
 namespace Angkor.O7Framework.Web.WebResult

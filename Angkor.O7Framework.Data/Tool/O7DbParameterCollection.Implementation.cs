@@ -3,11 +3,11 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
-using Angkor.O7Framework.Common;
+using Angkor.O7Framework.Common.Model;
 using Angkor.O7Framework.Data.Exception;
 using Oracle.ManagedDataAccess.Client;
 
-namespace Angkor.O7Framework.Data.Utility
+namespace Angkor.O7Framework.Data.Tool
 {
     public partial class O7DbParameterCollection
     {

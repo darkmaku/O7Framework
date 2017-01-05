@@ -2,9 +2,9 @@
 
 using System;
 using Angkor.O7Framework.Data;
-using Angkor.O7Framework.Data.Utility;
+using Angkor.O7Framework.Data.Tool;
 
-namespace Angkor.O7Framework.Infraestructure
+namespace Angkor.O7Framework.Infrastructure
 {
     public class O7AbstractData : IDisposable
     {

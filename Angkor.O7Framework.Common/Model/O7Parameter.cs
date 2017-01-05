@@ -3,7 +3,7 @@
 
 using System.Diagnostics.Contracts;
 
-namespace Angkor.O7Framework.Common
+namespace Angkor.O7Framework.Common.Model
 {
     public class O7Parameter
     {

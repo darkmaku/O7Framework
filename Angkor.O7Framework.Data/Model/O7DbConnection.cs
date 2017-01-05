@@ -2,7 +2,7 @@
 
 using System.Configuration;
 
-namespace Angkor.O7Framework.Data.Utility
+namespace Angkor.O7Framework.Data.Model
 {
     public class O7DbConnection : ConfigurationSection
     {

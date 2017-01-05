@@ -3,7 +3,7 @@ using Angkor.O7Framework.Common.Validator;
 using Angkor.O7Framework.Utility;
 using Oracle.ManagedDataAccess.Client;
 
-namespace Angkor.O7Framework.Data.Utility
+namespace Angkor.O7Framework.Data.Validator
 {
     public class O7DbValidator
     {

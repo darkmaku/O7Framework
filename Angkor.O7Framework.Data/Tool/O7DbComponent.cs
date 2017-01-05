@@ -2,8 +2,9 @@
 
 using System.Configuration;
 using System.Diagnostics.Contracts;
+using Angkor.O7Framework.Data.Model;
 
-namespace Angkor.O7Framework.Data.Utility
+namespace Angkor.O7Framework.Data.Tool
 {
     public class O7DbComponent
     {

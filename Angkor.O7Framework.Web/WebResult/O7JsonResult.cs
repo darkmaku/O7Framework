@@ -1,8 +1,8 @@
 ﻿// Create by Felix A. Bueno
 
 using System.Web.Mvc;
-using Angkor.O7Framework.Domain.Response;
 using System.Diagnostics.Contracts;
+using Angkor.O7Framework.Common.Model;
 
 namespace Angkor.O7Framework.Web.WebResult
 {

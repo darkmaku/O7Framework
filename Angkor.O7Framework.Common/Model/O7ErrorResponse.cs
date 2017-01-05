@@ -1,5 +1,5 @@
 ﻿// Create by Felix A. Bueno
-namespace Angkor.O7Framework.Domain.Response
+namespace Angkor.O7Framework.Common.Model
 {
     public class O7ErrorResponse : O7Response<int, string>
     {

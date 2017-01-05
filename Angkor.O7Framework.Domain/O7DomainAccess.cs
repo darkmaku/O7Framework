@@ -1,5 +1,5 @@
 ﻿using System;
-using Angkor.O7Framework.Infraestructure;
+using Angkor.O7Framework.Infrastructure;
 using Castle.DynamicProxy;
 
 namespace Angkor.O7Framework.Domain
