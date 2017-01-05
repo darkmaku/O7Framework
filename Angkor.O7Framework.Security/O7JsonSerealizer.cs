@@ -19,7 +19,7 @@ namespace Angkor.O7Framework.Utility
 
         public static TResult Deserialize<TResult>(string json) where TResult : class
         {
-            //Contract.Ensures(ContractValidator.ValidTResultResult(Contract.Result<TResult>()));
+            Contract.Ensures(ContractValidator.ValidTResultResult(Contract.Result<TResult>()));
             var typeResult = typeof(TResult);
             var result = Activator.CreateInstance(typeResult);
             object_initialize(result, typeResult.GetProperties(), json);

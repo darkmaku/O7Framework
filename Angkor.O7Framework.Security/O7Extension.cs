@@ -2,14 +2,16 @@
 
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.Contracts;
 using System.Reflection;
 
 namespace Angkor.O7Framework.Utility
 {
-    public static class O7Extension
+    public static partial class O7Extension
     {
         public static void Append<TValue,TEntity>(this List<TEntity> list, string propertyName, TValue value)            
         {
+            Contract.Requires(list!=null && UtilityHelper.ValidStringParameter(propertyName) && value !=null);
             var type = typeof(TEntity);
             var property = type.GetProperty(propertyName);
             foreach (var entity in list)
@@ -24,6 +26,7 @@ namespace Angkor.O7Framework.Utility
 
         public static string GetValueFrom(this string source, string name)
         {
+            Contract.Requires(UtilityHelper.ValidStringParameter(source,name));
             var values = source.Split(';');
             foreach (var value in values)
             {
@@ -35,6 +38,8 @@ namespace Angkor.O7Framework.Utility
 
         public static string ToUriPath(this string url)
         {
+            Contract.Requires(UtilityHelper.ValidStringParameter(url));
+            Contract.Ensures(UtilityHelper.ValidStringParameter(Contract.Result<string>()));
             return replace_percent_encoding(url, new Tuple<string, string>("!", "%21"),
                 new Tuple<string, string>("#", "%23"), new Tuple<string, string>("$", "%24"),
                 new Tuple<string, string>("&", "%26"), new Tuple<string, string>("'", "%27"),
@@ -46,7 +51,6 @@ namespace Angkor.O7Framework.Utility
                 new Tuple<string, string>("@", "%40"), new Tuple<string, string>("[", "%5B"),
                 new Tuple<string, string>("]", "%5D"));
         }
-
         private static string replace_percent_encoding(string url, params Tuple<string, string>[] values)
         {
             for (var i = 0; i < values.Length; i++)
@@ -62,13 +66,14 @@ namespace Angkor.O7Framework.Utility
         private static T get_value<T>(PropertyInfo info, object sourceObject)
         {
             var value = info.GetValue(sourceObject);
-            if (value is T) return (T) value;
+            if (value is T) return (T)value;
             throw new InvalidCastException();
         }
 
         private static string append(object currentValue, object appendValue)
         {
             return $"{currentValue}{appendValue}";
-        }    
+        }
+
     }
 }

@@ -42,7 +42,7 @@
     <Reference Include="System.Data" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="O7AbstractDomain.cs" />
+    <Compile Include="O7DomainBuilder.cs" />
     <Compile Include="O7Domain.cs" />
     <Compile Include="O7DomainException.cs" />
     <Compile Include="Response\O7ErrorResponse.cs" />
@@ -58,6 +58,10 @@
     <ProjectReference Include="..\Angkor.O7Framework.Common\Angkor.O7Framework.Common.csproj">
       <Project>{69706A01-42D2-4782-BB3D-E97BF6BB5FF7}</Project>
       <Name>Angkor.O7Framework.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Angkor.O7Framework.Infraestructure\Angkor.O7Framework.Infraestructure.csproj">
+      <Project>{2839E270-28C7-4031-B2E4-C97C61B66619}</Project>
+      <Name>Angkor.O7Framework.Infraestructure</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
