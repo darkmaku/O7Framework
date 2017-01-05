@@ -8,19 +8,16 @@ namespace Angkor.O7Framework.Infrastructure
 {
     public class O7AbstractData : IDisposable
     {
-        private O7DbAccess _dataAccess;
+        protected O7DbAccess DataAccess { get; private set; }
 
         public O7AbstractData(string user, string password)
         {
-            _dataAccess = O7DbAccess.Make(O7DbComponent.BuildDbConection(user, password));
+            DataAccess = O7DbAccess.Make(O7DbComponent.BuildDbConection(user, password));
         }
-
-        protected O7DbAccess GetDataAccess() 
-            => _dataAccess;
-
+        
         public void Dispose()
         {
-            _dataAccess = null;
+            DataAccess = null;
             GC.Collect();
         }
     }
