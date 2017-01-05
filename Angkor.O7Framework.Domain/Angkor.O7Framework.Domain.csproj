@@ -43,11 +43,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="O7DomainAccess.cs" />
-    <Compile Include="O7Domain.cs" />
-    <Compile Include="O7DomainException.cs" />
-    <Compile Include="Response\O7ErrorResponse.cs" />
-    <Compile Include="Response\O7Response.cs" />
-    <Compile Include="Response\O7SuccessResponse.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -33,9 +33,12 @@
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="O7Parameter.cs" />
-    <Compile Include="O7ParameterCollection.cs" />
+    <Compile Include="Model\O7ErrorResponse.cs" />
+    <Compile Include="Model\O7Response.cs" />
+    <Compile Include="Model\O7Parameter.cs" />
+    <Compile Include="Model\O7ParameterCollection.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Model\O7SuccessResponse.cs" />
     <Compile Include="Validator\ContractValidator.cs" />
     <Compile Include="Validator\StringsValidator.cs" />
   </ItemGroup>

@@ -1,7 +1,5 @@
 ﻿// Create by Felix A. Bueno
 
-using System;
-
 namespace Angkor.O7Framework.Domain.Response
 {
     public abstract class O7Response

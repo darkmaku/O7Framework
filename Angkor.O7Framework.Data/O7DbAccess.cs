@@ -4,37 +4,37 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics.Contracts;
 using Angkor.O7Framework.Common.Validator;
-using Angkor.O7Framework.Data.Common;
 using Angkor.O7Framework.Data.Utility;
 using Oracle.ManagedDataAccess.Client;
 using Oracle.ManagedDataAccess.Types;
 
 namespace Angkor.O7Framework.Data
 {
-    public partial class O7DataAccess
+    public partial class O7DbAccess
     {
-        
         private readonly OracleConnection _connection;
 
         [ContractInvariantMethod]
         private void connection_invariant()
         {
-            Contract.Invariant(O7DataBaseValidator.ConnectionIsOpened(_connection));
+            Contract.Invariant(O7DbValidator.ConnectionIsOpened(_connection));
         }
 
-        public O7DataAccess(string connection)
+        public static O7DbAccess Make(string connection)
+            => new O7DbAccess(connection);
+
+        protected O7DbAccess(string connection)
         {
-            Contract.Requires(O7DataBaseValidator.ValidConnection(connection));
+            Contract.Requires(O7DbValidator.ValidConnection(connection));
             _connection = new OracleConnection(connection);
             _connection.Open();
         }
 
-        ~O7DataAccess()
+        ~O7DbAccess()
         {
             _connection.Dispose();
         }
         
-
         public TResult ExecuteFunction<TResult>(string name) 
             => ExecuteFunction<TResult>(name, O7DbParameterCollection.Make);
 
@@ -59,11 +59,10 @@ namespace Angkor.O7Framework.Data
             }
         }
 
-        public List<TResult> ExecuteFunction<TResult>(string name, Type mapperType) where TResult : O7Entity
+        public List<TResult> ExecuteFunction<TResult>(string name, Type mapperType)
             => ExecuteFunction<TResult>(name, O7DbParameterCollection.Make, mapperType);
 
-        public List<TResult> ExecuteFunction<TResult>(string name, O7DbParameterCollection parametersCollection, Type mapperType)
-            where TResult : O7Entity
+        public List<TResult> ExecuteFunction<TResult>(string name, O7DbParameterCollection parametersCollection, Type mapperType)            
         {
             Contract.Requires(ContractValidator.StringIsNotNullOrEmpty(name) && parametersCollection != null && mapperType != null);
             var result = new List<TResult>();

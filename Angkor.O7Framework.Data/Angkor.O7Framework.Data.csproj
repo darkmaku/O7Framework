@@ -41,18 +41,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Common\O7Entity.cs" />
     <Compile Include="Exception\O7DataException.cs" />
-    <Compile Include="O7DataAccess.cs" />
-    <Compile Include="O7DataAccess.Implementation.cs" />
+    <Compile Include="O7DbAccess.cs" />
+    <Compile Include="O7DbAccess.Implementation.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Utility\O7Connection.cs" />
-    <Compile Include="Utility\O7DataBaseValidator.cs" />
-    <Compile Include="Utility\O7DataMapper.cs" />
-    <Compile Include="Utility\O7DbParameterCollection.cs" />
-    <Compile Include="Utility\O7DbParameterCollection.Implementation.cs" />
-    <Compile Include="Utility\O7Provider.cs" />
-    <Compile Include="Utility\O7Row.cs" />
+    <Compile Include="Model\O7DbConnection.cs" />
+    <Compile Include="Validator\O7DbValidator.cs" />
+    <Compile Include="Tool\O7DbMapper.cs" />
+    <Compile Include="Tool\O7DbParameterCollection.cs" />
+    <Compile Include="Tool\O7DbParameterCollection.Implementation.cs" />
+    <Compile Include="Tool\O7DbComponent.cs" />
+    <Compile Include="Tool\O7DbRowReader.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

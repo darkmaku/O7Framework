@@ -4,11 +4,11 @@ using Oracle.ManagedDataAccess.Client;
 
 namespace Angkor.O7Framework.Data.Utility
 {
-    public class O7Row
+    public class O7DbRowReader
     {
         private readonly OracleDataReader _reader;
 
-        protected O7Row(OracleDataReader reader)
+        protected O7DbRowReader(OracleDataReader reader)
         {
             _reader = reader;
         }

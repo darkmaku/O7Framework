@@ -4,7 +4,7 @@ using System.Configuration;
 
 namespace Angkor.O7Framework.Data.Utility
 {
-    public class O7Connection : ConfigurationSection
+    public class O7DbConnection : ConfigurationSection
     {
         [ConfigurationProperty("provider")]
         public string Provider

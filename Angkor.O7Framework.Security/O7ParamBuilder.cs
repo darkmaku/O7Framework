@@ -28,7 +28,7 @@ namespace Angkor.O7Framework.Utility
         public string GetParameterValue(string name)
         {
             Contract.Requires(ContractValidator.StringIsNotNullOrEmpty(name));
-            string[] parameters = _parameterUrl.Split ('&');
+            var parameters = _parameterUrl.Split ('&');
             for (var i = 0; i < parameters.Length; i++)
             {
                 string parameter = parameters[i];
