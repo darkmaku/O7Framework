@@ -3,6 +3,7 @@ using System.Dynamic;
 using System.Reflection;
 using Angkor.O7Framework.Common;
 using Angkor.O7Framework.Domain;
+using Angkor.O7Framework.Infrastructure;
 using Castle.DynamicProxy;
 
 namespace TestCastleCore
@@ -11,7 +12,7 @@ namespace TestCastleCore
     {
         static void Main(string[] args)
         {
-            var x = O7DomainAccess.MakeInstance<Test, O7Domain>();
+            var x = O7DomainAccess.MakeInstance<Test, O7AbstractDomain>(null);
             x.Exec("hola", 5);
             Console.ReadKey();
         }

@@ -6,7 +6,6 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using Angkor.O7Framework.Data;
-using Angkor.O7Framework.Data.Common;
 using Angkor.O7Framework.Utility;
 using Angkor.O7Framework.Web.HtmlHelper;
 using Newtonsoft.Json;
@@ -187,8 +186,8 @@ namespace Angkor.O7Framework.Test
 
     }
 
-    class test : O7Entity
-    {
-        public string Description { get; set; }
-    }
+    //class test : O7Entity
+    //{
+    //    public string Description { get; set; }
+    //}
 }
