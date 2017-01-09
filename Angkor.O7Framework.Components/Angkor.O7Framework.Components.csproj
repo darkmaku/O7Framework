@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{C5040A3E-40CE-481F-B1D9-2056D642D937}</ProjectGuid>
+    <ProjectGuid>{25CB8AF8-0001-451C-BABC-C765CA02B384}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Angkor.O7Framework.Utility</RootNamespace>
-    <AssemblyName>Angkor.O7Framework.Utility</AssemblyName>
+    <RootNamespace>Angkor.O7Framework.Components</RootNamespace>
+    <AssemblyName>Angkor.O7Framework.Components</AssemblyName>
     <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -31,23 +31,21 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="O7Cryptography.cs" />
-    <Compile Include="O7Cryptography.Implementation.cs" />
-    <Compile Include="O7Extension.cs" />
-    <Compile Include="O7Extension.Implementation.cs" />
-    <Compile Include="O7JsonSerealizer.cs" />
-    <Compile Include="O7JsonSerealizer.Implementation.cs" />
-    <Compile Include="O7Mapper.cs" />
-    <Compile Include="O7ParamBuilder.cs" />
-    <Compile Include="O7TextWriter.cs" />
+    <Compile Include="Model\O7File.cs" />
+    <Compile Include="O7Logger.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Angkor.O7Framework.Common\Angkor.O7Framework.Common.csproj">
-      <Project>{69706a01-42d2-4782-bb3d-e97bf6bb5ff7}</Project>
-      <Name>Angkor.O7Framework.Common</Name>
+    <ProjectReference Include="..\Angkor.O7Framework.Security\Angkor.O7Framework.Utility.csproj">
+      <Project>{C5040A3E-40CE-481F-B1D9-2056D642D937}</Project>
+      <Name>Angkor.O7Framework.Utility</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Angkor.O7Framework.Web\Angkor.O7Framework.Web.csproj">
+      <Project>{EB18D8F8-FA06-4255-B02E-249AB2D60CE0}</Project>
+      <Name>Angkor.O7Framework.Web</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

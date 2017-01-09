@@ -19,6 +19,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Angkor.O7Framework.Common",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Angkor.O7Framework.Infrastructure", "Angkor.O7Framework.Infraestructure\Angkor.O7Framework.Infrastructure.csproj", "{2839E270-28C7-4031-B2E4-C97C61B66619}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Angkor.O7Framework.Components", "Angkor.O7Framework.Components\Angkor.O7Framework.Components.csproj", "{25CB8AF8-0001-451C-BABC-C765CA02B384}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -57,6 +59,10 @@ Global
 		{2839E270-28C7-4031-B2E4-C97C61B66619}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2839E270-28C7-4031-B2E4-C97C61B66619}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2839E270-28C7-4031-B2E4-C97C61B66619}.Release|Any CPU.Build.0 = Release|Any CPU
+		{25CB8AF8-0001-451C-BABC-C765CA02B384}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{25CB8AF8-0001-451C-BABC-C765CA02B384}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{25CB8AF8-0001-451C-BABC-C765CA02B384}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{25CB8AF8-0001-451C-BABC-C765CA02B384}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
