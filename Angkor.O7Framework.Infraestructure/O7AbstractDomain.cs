@@ -3,6 +3,7 @@
 using System;
 using System.Reflection;
 using Angkor.O7Framework.Common.Model;
+using Angkor.O7Framework.Components;
 using Castle.DynamicProxy;
 
 namespace Angkor.O7Framework.Infrastructure
@@ -10,6 +11,20 @@ namespace Angkor.O7Framework.Infrastructure
     public abstract class O7AbstractDomain : IInterceptor
     {
         private IInvocation _invocation;
+        private O7Logger _logger;
+        private readonly string _userName;
+
+        protected O7AbstractDomain(string userName)
+        {
+            _userName = userName;
+        }
+
+        protected void MakeLogger(Type assemblyType)
+            => _logger = new O7Logger(_userName, assemblyType);
+        
+
+        protected O7Logger Logger 
+            => _logger;
 
         public virtual void OnEntry(O7Parameter[] parameters)
         {
@@ -39,7 +54,7 @@ namespace Angkor.O7Framework.Infrastructure
             }
             catch (Exception exception)
             {
-                OnException(exception);
+                OnException(exception);                
             }
             
         }

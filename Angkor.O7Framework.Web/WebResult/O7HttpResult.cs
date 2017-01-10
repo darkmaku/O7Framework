@@ -19,13 +19,11 @@ namespace Angkor.O7Framework.Web.WebResult
         public static O7RedirectResult MakeRedirectError(int code, string message) 
             => new O7RedirectResult(code, message);
 
-        public static ActionResult MakeActionResult<TViewModel>(O7Response response, O7ViewModelMapper<TViewModel> mapper) 
-            where TViewModel : O7ViewModel
-        {
-            Contract.Requires(mapper != null);
+        public static ActionResult MakeActionResult(O7Response response)             
+        {            
             var errorResponse = response as O7ErrorResponse;
             if (errorResponse != null) return new O7RedirectResult(errorResponse);            
-            return new O7ViewResult(mapper.MapTarget());
+            return new O7ViewResult(null);
         }
     }
 }

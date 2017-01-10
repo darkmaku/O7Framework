@@ -34,6 +34,7 @@
     <Reference Include="System.Configuration" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Model\LogRow.cs" />
     <Compile Include="Model\O7File.cs" />
     <Compile Include="O7Logger.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

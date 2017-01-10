@@ -4,36 +4,28 @@ using System;
 using System.Configuration;
 using Angkor.O7Framework.Components.Model;
 using Angkor.O7Framework.Utility;
-using Angkor.O7Framework.Web.Security;
 
 namespace Angkor.O7Framework.Components
 {
     public class O7Logger
     {
-        private readonly O7Principal _credential;
+        private readonly string _name;
         private readonly O7TextWriter _textWriter;
         private readonly Type _definitionCaller;
 
-        public O7Logger(O7Principal credential, Type definitionCaller)
+        public O7Logger(string name, Type definitionCaller)
         {
-            _credential = credential;
+            _name = name;
             _definitionCaller = definitionCaller;
             _textWriter = build_text_writer();
         }
 
         public void AppendError(string subject)
         {
-            var currentDate = DateTime.Now;
+            var currentDate = DateTime.Now.ToString("yyyy-MM-dd HH:mm");
             var assemblyName = _definitionCaller.Assembly.FullName;
             var className = _definitionCaller.FullName;
-            var objectTransfer = new
-            {
-                current_date = currentDate,
-                user_name = _credential.Name,
-                assembly = assemblyName,
-                class_name = className,
-                exception_message = subject
-            };
+            var objectTransfer = new LogRow(currentDate, _name, assemblyName, className, subject);
             var serializedObject = O7JsonSerealizer.Serialize(objectTransfer);
             var text = _textWriter.Empty ? serializedObject : $",{serializedObject}";
             _textWriter.Write(text);

@@ -11,7 +11,6 @@
     <AssemblyName>Angkor.O7Framework.Web</AssemblyName>
     <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <DontImportPostSharp>True</DontImportPostSharp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -90,21 +89,12 @@
       <Project>{69706a01-42d2-4782-bb3d-e97bf6bb5ff7}</Project>
       <Name>Angkor.O7Framework.Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Angkor.O7Framework.Domain\Angkor.O7Framework.Domain.csproj">
-      <Project>{9D9386D9-976B-4D51-832F-9C61EFAB323E}</Project>
-      <Name>Angkor.O7Framework.Domain</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Angkor.O7Framework.Security\Angkor.O7Framework.Utility.csproj">
       <Project>{C5040A3E-40CE-481F-B1D9-2056D642D937}</Project>
       <Name>Angkor.O7Framework.Utility</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <Import Project="..\packages\PostSharp.4.3.24\tools\PostSharp.targets" Condition="Exists('..\packages\PostSharp.4.3.24\tools\PostSharp.targets')" />
-  <Target Name="EnsurePostSharpImported" BeforeTargets="BeforeBuild" Condition="'$(PostSharp30Imported)' == ''">
-    <Error Condition="!Exists('..\packages\PostSharp.4.3.24\tools\PostSharp.targets')" Text="This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://www.postsharp.net/links/nuget-restore." />
-    <Error Condition="Exists('..\packages\PostSharp.4.3.24\tools\PostSharp.targets')" Text="The build restored NuGet packages. Build the project again to include these packages in the build. For more information, see http://www.postsharp.net/links/nuget-restore." />
-  </Target>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

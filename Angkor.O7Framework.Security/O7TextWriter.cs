@@ -14,7 +14,7 @@ namespace Angkor.O7Framework.Utility
         {
             _path = path;
             _file = $"{name}.{extension}";
-            _completePath = $"{_path}/{_file}";
+            _completePath = $"{_path}\\{_file}";
             if (!Directory.Exists(_path)) Directory.CreateDirectory(_path);
             if (!File.Exists(_completePath)) File.Create(_completePath);
         }
