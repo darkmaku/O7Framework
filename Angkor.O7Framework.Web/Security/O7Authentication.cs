@@ -10,24 +10,22 @@ namespace Angkor.O7Framework.Web.Security
     public class O7Authentication
     {
         private readonly HttpSessionStateBase _sessionBase;
-        private readonly O7Cryptography _cryptography;
-
+        
         public O7Authentication(HttpSessionStateBase sessionBase)
         {
             _sessionBase = sessionBase;
-            _cryptography = new O7Cryptography(WebConstant.CRYPT_KEY);
         }
 
         public void SetMenu(List<O7Menu> menus)
         {
             var serializedMenu = O7JsonSerealizer.Serialize(menus);
-            _sessionBase.Add(WebConstant.MENU_COOKIE, _cryptography.Encrypt(serializedMenu));
+            _sessionBase.Add(WebConstant.MENU_COOKIE, serializedMenu);
         }
 
         public void SetUser(O7User user)
         {
             var serializedUser = O7JsonSerealizer.Serialize(user);
-            _sessionBase.Add(WebConstant.USER_COOKIE, _cryptography.Encrypt(serializedUser));
+            _sessionBase.Add(WebConstant.USER_COOKIE, serializedUser);
         }
 
         public List<O7Menu> Menus
@@ -35,7 +33,7 @@ namespace Angkor.O7Framework.Web.Security
             get
             {
                 var serializedMenu = (string) _sessionBase[WebConstant.MENU_COOKIE];
-                return O7JsonSerealizer.Deserialize<List<O7Menu>>(_cryptography.Decrypt(serializedMenu));
+                return O7JsonSerealizer.Deserialize<List<O7Menu>>(serializedMenu);
             }
         }
 
@@ -44,7 +42,7 @@ namespace Angkor.O7Framework.Web.Security
             get
             {
                 var serializedUser = (string)_sessionBase[WebConstant.USER_COOKIE];
-                return O7JsonSerealizer.Deserialize<O7User>(_cryptography.Decrypt(serializedUser));
+                return O7JsonSerealizer.Deserialize<O7User>(serializedUser);
             }
         }
 
