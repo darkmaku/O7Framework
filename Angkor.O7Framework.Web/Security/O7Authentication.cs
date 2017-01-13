@@ -1,37 +1,61 @@
 ﻿// Create by Felix A. Bueno
-
-using System;
-using System.Diagnostics.Contracts;
+using System.Collections.Generic;
 using System.Web;
-using System.Web.Security;
-using Angkor.O7Framework.Common.Validator;
 using Angkor.O7Framework.Utility;
+using Angkor.O7Framework.Web.Model;
+using Angkor.O7Framework.Web.Utility;
 
 namespace Angkor.O7Framework.Web.Security
 {
     public class O7Authentication
     {
-        public static HttpCookie Generate(string company, string branch, string login, string name, string password)
+        private readonly HttpSessionStateBase _sessionBase;
+        private readonly O7Cryptography _cryptography;
+
+        public O7Authentication(HttpSessionStateBase sessionBase)
         {
-            Contract.Requires(ContractValidator.StringIsNotNullOrEmpty(company, branch, login, name, password));            
-            var user = new O7User(company, branch, login, name, password);
-            var userJson = O7JsonSerealizer.Serialize(user);
-            var ticket = new FormsAuthenticationTicket(1, user.Login, DateTime.Now, DateTime.Now.AddMinutes(20), false, userJson);
-            var encrypted = FormsAuthentication.Encrypt(ticket);
-            return new HttpCookie(FormsAuthentication.FormsCookieName, encrypted);
+            _sessionBase = sessionBase;
+            _cryptography = new O7Cryptography(WebConstant.CRYPT_KEY);
         }
 
-        public static O7Principal Extract(HttpCookie cookie)
+        public void SetMenu(List<O7Menu> menus)
         {
-            Contract.Requires(cookie != null);
-            var ticket = FormsAuthentication.Decrypt(cookie.Value);
-            var user = O7JsonSerealizer.Deserialize<O7User>(ticket.UserData);
-            return new O7Principal(user.Login, user.Company, user.Branch, user.Name, user.Password);
+            var serializedMenu = O7JsonSerealizer.Serialize(menus);
+            _sessionBase.Add(WebConstant.MENU_COOKIE, _cryptography.Encrypt(serializedMenu));
         }
 
-        public static void SignOut()
+        public void SetUser(O7User user)
         {
-            FormsAuthentication.SignOut();
+            var serializedUser = O7JsonSerealizer.Serialize(user);
+            _sessionBase.Add(WebConstant.USER_COOKIE, _cryptography.Encrypt(serializedUser));
+        }
+
+        public List<O7Menu> Menus
+        {
+            get
+            {
+                var serializedMenu = (string) _sessionBase[WebConstant.MENU_COOKIE];
+                return O7JsonSerealizer.Deserialize<List<O7Menu>>(_cryptography.Decrypt(serializedMenu));
+            }
+        }
+
+        public O7User User
+        {
+            get
+            {
+                var serializedUser = (string)_sessionBase[WebConstant.USER_COOKIE];
+                return O7JsonSerealizer.Deserialize<O7User>(_cryptography.Decrypt(serializedUser));
+            }
+        }
+
+        public void RemoveUser()
+        {
+            _sessionBase.Remove(WebConstant.USER_COOKIE);
+        }
+
+        public void RemoveMenus()
+        {
+            _sessionBase.Remove(WebConstant.MENU_COOKIE);
         }
     }
 }

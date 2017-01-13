@@ -10,8 +10,8 @@ namespace Angkor.O7Framework.Data.Tool
     {
         public static string BuildDbConection(string user, string password)
         {
-            Contract.Requires(ConfigurationManager.GetSection("O7Connection") is O7DbConnection);
-            var connection = (O7DbConnection)ConfigurationManager.GetSection("O7Connection");
+            Contract.Requires(ConfigurationManager.GetSection("O7DbConnection") is O7DbConnection);
+            var connection = (O7DbConnection)ConfigurationManager.GetSection("O7DbConnection");
             return $"Data Source={connection.Server}; User Id={user}; Password={password};";
         }
     }

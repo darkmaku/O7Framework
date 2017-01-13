@@ -23,7 +23,7 @@ namespace Angkor.O7Framework.Web.WebResult
             var errorResponse = _response as O7ErrorResponse;
             if (errorResponse != null)
             {
-                context.RequestContext.HttpContext.Response.StatusCode = errorResponse.Code;
+                context.RequestContext.HttpContext.Response.StatusCode = 500;
                 context.RequestContext.HttpContext.Response.StatusDescription = errorResponse.Message;
             }
             var successResponse = _response as O7SuccessResponse<string>;

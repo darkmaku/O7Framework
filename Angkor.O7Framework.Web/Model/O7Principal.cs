@@ -1,6 +1,6 @@
 ﻿using System.Security.Principal;
 
-namespace Angkor.O7Framework.Web.Security
+namespace Angkor.O7Framework.Web.Model
 {
     public class O7Principal : IPrincipal
     {

@@ -2,6 +2,7 @@
 
 using System.Diagnostics.Contracts;
 using System.Web.Mvc;
+using Angkor.O7Framework.Web.Model;
 using Angkor.O7Framework.Web.Security;
 
 namespace Angkor.O7Framework.Web.Base

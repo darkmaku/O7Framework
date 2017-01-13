@@ -1,15 +1,14 @@
 ﻿// Create by Felix A. Bueno
 namespace Angkor.O7Framework.Common.Model
 {
-    public class O7ErrorResponse : O7Response<int, string>
+    public class O7ErrorResponse : O7Response<string>
     {
-        public O7ErrorResponse(int value1, string value2) : base(value1, value2)
-        {
-        }
+        protected O7ErrorResponse(string value1) : base(value1)
+        { }
 
-        public int Code => Item1;
+        public string Message => Item1;
 
-        public string Message => Item2;
-
+        public static O7ErrorResponse Make(string value)
+            => new O7ErrorResponse(value);
     }
 }

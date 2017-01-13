@@ -87,12 +87,27 @@ namespace Angkor.O7Framework.Test
 
     }
 
+    class MyClass
+    {
+        public string Hola { get; set; }
+        public List<MyClass> Classes { get; set; }
+    }
+
     class Program
     {
         static void Main()
         {
-            Test();
-            
+            var myclasses = new List<MyClass>();
+            myclasses.Add(new MyClass { Hola = "x", Classes = new List<MyClass>()});
+            myclasses.Add(new MyClass { Hola = "x1", Classes = new List<MyClass>() });
+            myclasses[0].Classes.Add(new MyClass { Hola = "y", Classes = new List<MyClass>() });
+            myclasses[0].Classes.Add(new MyClass { Hola = "z", Classes = new List<MyClass>() });
+            myclasses[1].Classes.Add(new MyClass { Hola = "y1", Classes = new List<MyClass>() });
+            myclasses[1].Classes.Add(new MyClass { Hola = "z1", Classes = new List<MyClass>() });
+            var str = O7JsonSerealizer.Serialize(myclasses);
+            Console.WriteLine(str);
+
+            var result = O7JsonSerealizer.Deserialize<List<MyClass>>(str);
             Console.ReadKey();
         }
 

@@ -21,7 +21,7 @@ namespace Angkor.O7Framework.Utility
             Contract.Ensures(Contract.Result<TResult>() != null);
             var typeResult = typeof(TResult);
             var result = Activator.CreateInstance(typeResult);
-            object_initialize(result, typeResult.GetProperties(), json);
+            result = object_initialize(result, json);
             return (TResult) result;
         }
     }

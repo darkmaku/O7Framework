@@ -6,6 +6,7 @@ using Angkor.O7Framework.Common.Model;
 using Angkor.O7Framework.Components;
 using Angkor.O7Framework.Domain;
 using Angkor.O7Framework.Infrastructure;
+using Angkor.O7Framework.Web.Model;
 using Angkor.O7Framework.Web.Security;
 using Castle.DynamicProxy;
 
@@ -18,23 +19,23 @@ namespace TestCastleCore
 //            var x = O7DomainInstanceMaker.MakeInstance<Test, MyClass>(new object[] {"okiwi", "oliwi"}, new object[]{});
 //            x.Exec("hola", 5);
 //            Console.ReadKey();
-            var x = new O7Logger(new O7Principal("fbueno","001", "003", "felix", "100890fF?"), typeof(Program));
-            x.AppendError("TestError");
+//            var x = new O7Logger(new O7Principal("fbueno","001", "003", "felix", "100890fF?"), typeof(Program));
+//            x.AppendError("TestError");
         }      
     }
 
-    public class MyClass : O7AbstractDomain
-    {
-        public override void OnEntry(O7Parameter[] parameters)
-        {
-            Console.WriteLine("Entry");
-        }
-
-        public override void OnExit(O7Parameter[] parameters)
-        {
-            Console.WriteLine("Exit");
-        }
-    }
+//    public class MyClass : O7AbstractDomain
+//    {
+//        public override void OnEntry(O7Parameter[] parameters)
+//        {
+//            Console.WriteLine("Entry");
+//        }
+//
+//        public override void OnExit(O7Parameter[] parameters)
+//        {
+//            Console.WriteLine("Exit");
+//        }
+//    }
 
     public class Test
     {
