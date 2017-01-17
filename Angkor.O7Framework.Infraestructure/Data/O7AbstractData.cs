@@ -1,18 +1,19 @@
 ﻿// Create by Felix A. Bueno
+
 using System;
 using Angkor.O7Framework.Data;
 using Angkor.O7Framework.Data.Tool;
 
-namespace Angkor.O7Framework.Infrastructure
+namespace Angkor.O7Framework.Infrastructure.Data
 {
-    public class O7AbstractData
+    public abstract class O7AbstractData
     {
         private readonly string _login;
         private readonly string _password;
 
         protected O7DbAccess DataAccess { get; private set; }
 
-        public O7AbstractData(string user, string password)
+        protected O7AbstractData(string user, string password)
         {
             _login = user;
             _password = password;            

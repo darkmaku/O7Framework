@@ -57,9 +57,9 @@
       <Project>{25CB8AF8-0001-451C-BABC-C765CA02B384}</Project>
       <Name>Angkor.O7Framework.Components</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Angkor.O7Framework.Domain\Angkor.O7Framework.Domain.csproj">
-      <Project>{9d9386d9-976b-4d51-832f-9c61efab323e}</Project>
-      <Name>Angkor.O7Framework.Domain</Name>
+    <ProjectReference Include="..\Angkor.O7Framework.Data\Angkor.O7Framework.Data.csproj">
+      <Project>{6CE0C6E6-55C7-42C9-BFDF-D51FB14CE6B0}</Project>
+      <Name>Angkor.O7Framework.Data</Name>
     </ProjectReference>
     <ProjectReference Include="..\Angkor.O7Framework.Infraestructure\Angkor.O7Framework.Infrastructure.csproj">
       <Project>{2839E270-28C7-4031-B2E4-C97C61B66619}</Project>

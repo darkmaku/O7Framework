@@ -1,8 +1,8 @@
 ﻿using System;
-using Angkor.O7Framework.Infrastructure;
+using Angkor.O7Framework.Infrastructure.Domain;
 using Castle.DynamicProxy;
 
-namespace Angkor.O7Framework.Domain
+namespace Angkor.O7Framework.Infrastructure
 {
     public class O7DomainInstanceMaker
     {

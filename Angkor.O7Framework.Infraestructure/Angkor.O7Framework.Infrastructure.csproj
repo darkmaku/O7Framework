@@ -37,9 +37,11 @@
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="O7AbstractData.cs" />
-    <Compile Include="O7AbstractDataFlow.cs" />
-    <Compile Include="O7AbstractDomain.cs" />
+    <Compile Include="Data\O7AbstractData.cs" />
+    <Compile Include="Data\O7AbstractDataFlow.cs" />
+    <Compile Include="Domain\O7AbstractDomain.cs" />
+    <Compile Include="O7DataInstanceMaker.cs" />
+    <Compile Include="O7DomainInstanceMaker.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -55,14 +57,11 @@
       <Project>{6CE0C6E6-55C7-42C9-BFDF-D51FB14CE6B0}</Project>
       <Name>Angkor.O7Framework.Data</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Angkor.O7Framework.Web\Angkor.O7Framework.Web.csproj">
-      <Project>{EB18D8F8-FA06-4255-B02E-249AB2D60CE0}</Project>
-      <Name>Angkor.O7Framework.Web</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

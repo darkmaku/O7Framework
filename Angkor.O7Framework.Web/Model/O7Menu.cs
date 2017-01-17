@@ -17,6 +17,11 @@ namespace Angkor.O7Framework.Web.Model
             Folder = folder;
         }
 
+        public O7Menu()
+        {
+            
+        }
+
         public string Id { get; set; }
         public string Title { get; set; }
         public string Observation { get; set; }

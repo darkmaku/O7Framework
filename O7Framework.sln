@@ -11,8 +11,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Angkor.O7Framework.Utility"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Angkor.O7Framework.Web", "Angkor.O7Framework.Web\Angkor.O7Framework.Web.csproj", "{EB18D8F8-FA06-4255-B02E-249AB2D60CE0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Angkor.O7Framework.Domain", "Angkor.O7Framework.Domain\Angkor.O7Framework.Domain.csproj", "{9D9386D9-976B-4D51-832F-9C61EFAB323E}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestCastleCore", "TestCastleCore\TestCastleCore.csproj", "{726D6D27-C6AA-425C-B755-E38A6F5786EE}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Angkor.O7Framework.Common", "Angkor.O7Framework.Common\Angkor.O7Framework.Common.csproj", "{69706A01-42D2-4782-BB3D-E97BF6BB5FF7}"
@@ -43,10 +41,6 @@ Global
 		{EB18D8F8-FA06-4255-B02E-249AB2D60CE0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EB18D8F8-FA06-4255-B02E-249AB2D60CE0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EB18D8F8-FA06-4255-B02E-249AB2D60CE0}.Release|Any CPU.Build.0 = Release|Any CPU
-		{9D9386D9-976B-4D51-832F-9C61EFAB323E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{9D9386D9-976B-4D51-832F-9C61EFAB323E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{9D9386D9-976B-4D51-832F-9C61EFAB323E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{9D9386D9-976B-4D51-832F-9C61EFAB323E}.Release|Any CPU.Build.0 = Release|Any CPU
 		{726D6D27-C6AA-425C-B755-E38A6F5786EE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{726D6D27-C6AA-425C-B755-E38A6F5786EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{726D6D27-C6AA-425C-B755-E38A6F5786EE}.Release|Any CPU.ActiveCfg = Release|Any CPU

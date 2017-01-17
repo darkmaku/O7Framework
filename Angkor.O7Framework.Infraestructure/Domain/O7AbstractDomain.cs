@@ -1,11 +1,12 @@
 ﻿// Create by Felix A. Bueno
+
 using System;
 using System.Reflection;
 using Angkor.O7Framework.Common.Model;
 using Angkor.O7Framework.Components;
 using Castle.DynamicProxy;
 
-namespace Angkor.O7Framework.Infrastructure
+namespace Angkor.O7Framework.Infrastructure.Domain
 {
     public abstract class O7AbstractDomain : IInterceptor
     {
