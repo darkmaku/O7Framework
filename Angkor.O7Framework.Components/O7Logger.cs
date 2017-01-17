@@ -29,6 +29,7 @@ namespace Angkor.O7Framework.Components
             var serializedObject = O7JsonSerealizer.Serialize(objectTransfer);
             var text = _textWriter.Empty ? serializedObject : $",{serializedObject}";
             _textWriter.Write(text);
+
         }
 
         private O7TextWriter build_text_writer()
