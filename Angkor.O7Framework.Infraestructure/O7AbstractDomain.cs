@@ -1,5 +1,4 @@
 ﻿// Create by Felix A. Bueno
-
 using System;
 using System.Reflection;
 using Angkor.O7Framework.Common.Model;

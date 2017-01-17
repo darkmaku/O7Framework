@@ -38,6 +38,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="O7AbstractData.cs" />
+    <Compile Include="O7AbstractDataFlow.cs" />
     <Compile Include="O7AbstractDomain.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

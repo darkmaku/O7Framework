@@ -1,21 +1,29 @@
 ﻿// Create by Felix A. Bueno
-
 using System;
 using Angkor.O7Framework.Data;
 using Angkor.O7Framework.Data.Tool;
 
 namespace Angkor.O7Framework.Infrastructure
 {
-    public class O7AbstractData : IDisposable
+    public class O7AbstractData
     {
+        private readonly string _login;
+        private readonly string _password;
+
         protected O7DbAccess DataAccess { get; private set; }
 
         public O7AbstractData(string user, string password)
         {
-            DataAccess = O7DbAccess.Make(O7DbComponent.BuildDbConection(user, password));
+            _login = user;
+            _password = password;            
         }
-        
-        public void Dispose()
+
+        public void OpenDataAccess()
+        {
+            DataAccess = O7DbAccess.Make(O7DbComponent.BuildDbConection(_login, _password));
+        }
+
+        public void CloseDataAccess()
         {
             DataAccess = null;
             GC.Collect();

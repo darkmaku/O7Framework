@@ -1,5 +1,4 @@
 ﻿// Created by Felix A. Bueno in 29/09/2016
-
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.Contracts;
