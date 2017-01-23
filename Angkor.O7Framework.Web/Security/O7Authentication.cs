@@ -28,6 +28,21 @@ namespace Angkor.O7Framework.Web.Security
             _sessionBase.Add(WebConstant.USER_COOKIE, serializedUser);
         }
 
+        public void SetModule(List<O7Module> modules)
+        {
+            var serializedModule = O7JsonSerealizer.Serialize(modules);
+            _sessionBase.Add(WebConstant.MODULE_COOKIE, serializedModule);
+        }
+
+        public List<O7Module> Modules
+        {
+            get
+            {
+                var serializedCookie = (string) _sessionBase[WebConstant.MODULE_COOKIE];
+                return O7JsonSerealizer.Deserialize<List<O7Module>>(serializedCookie);
+            }
+        }
+
         public List<O7Menu> Menus
         {
             get
@@ -44,6 +59,11 @@ namespace Angkor.O7Framework.Web.Security
                 var serializedUser = (string)_sessionBase[WebConstant.USER_COOKIE];
                 return O7JsonSerealizer.Deserialize<O7User>(serializedUser);
             }
+        }
+
+        public void RemoveModule()
+        {
+            _sessionBase.Remove(WebConstant.MODULE_COOKIE);
         }
 
         public void RemoveUser()

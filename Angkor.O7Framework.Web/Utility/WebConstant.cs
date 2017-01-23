@@ -5,6 +5,7 @@ namespace Angkor.O7Framework.Web.Utility
     {
         public const string MENU_COOKIE = ".ASPX_O7MENU";
         public const string USER_COOKIE = ".ASPX_O7USER";
+        public const string MODULE_COOKIE = ".ASPX_O7MODULE";
 
         public const string CRYPT_KEY = "ANGKOR_FRAMEWORK";
     }

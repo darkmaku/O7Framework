@@ -56,7 +56,6 @@ namespace Angkor.O7Framework.Infrastructure.Domain
             {
                 OnException(exception);                
             }
-            
         }
 
         private O7Parameter[] build_parameters(IInvocation invocation)

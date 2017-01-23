@@ -1,5 +1,4 @@
 ﻿// Create by Felix A. Bueno
-
 using System.Diagnostics.Contracts;
 using System.Web.Mvc;
 using Angkor.O7Framework.Web.Model;
@@ -14,7 +13,8 @@ namespace Angkor.O7Framework.Web.Base
             get
             {
                 Contract.Requires(HttpContext.User is O7Principal);
-                return (O7Principal) HttpContext.User;
+                var user = new O7Authentication(Session).User;
+                return new O7Principal(user.Login, user.Company, user.Branch, user.Name, user.Password);                
             }
         }
     }

@@ -30,7 +30,7 @@ namespace Angkor.O7Framework.Data.Tool
 
         private static OracleParameter make_parameter(string name, object value)
         {
-            var parameter = new OracleParameter(name, get_oracle_type(value.GetType()));
+            var parameter = new OracleParameter(name, get_oracle_type(value?.GetType() ?? typeof(string)));
             parameter.Value = value;
             parameter.Direction = ParameterDirection.Input;
             return parameter;

@@ -69,6 +69,7 @@
     <Compile Include="HtmlHelper\LinkHelper.cs" />
     <Compile Include="HtmlHelper\LinkHelper.Implementation.cs" />
     <Compile Include="Model\O7Menu.cs" />
+    <Compile Include="Model\O7Module.cs" />
     <Compile Include="Security\O7Authentication.cs" />
     <Compile Include="Base\O7Controller.cs" />
     <Compile Include="Model\O7Principal.cs" />

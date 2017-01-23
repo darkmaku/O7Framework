@@ -10,6 +10,8 @@ namespace Angkor.O7Framework.Web.Base
     {
         public virtual List<O7Menu> Menus => new O7Authentication(Session).Menus;
 
+        public virtual List<O7Module> Modules => new O7Authentication(Session).Modules;
+
         public new virtual O7Principal User
         {
             get
@@ -22,6 +24,8 @@ namespace Angkor.O7Framework.Web.Base
 
     public abstract class O7ViewPage<TModel> : WebViewPage<TModel>
     {
+        public virtual List<O7Module> Modules => new O7Authentication(Session).Modules;
+
         public virtual List<O7Menu> Menus => new O7Authentication(Session).Menus;
 
         public new virtual O7Principal User

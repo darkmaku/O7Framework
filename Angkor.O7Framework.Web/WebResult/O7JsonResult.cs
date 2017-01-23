@@ -1,5 +1,5 @@
 ﻿// Create by Felix A. Bueno
-
+using System;
 using System.Web.Mvc;
 using System.Diagnostics.Contracts;
 using Angkor.O7Framework.Common.Model;
@@ -15,29 +15,21 @@ namespace Angkor.O7Framework.Web.WebResult
             Contract.Requires(value != null);
             _response = value;
             JsonRequestBehavior = JsonRequestBehavior.AllowGet;
-            ContentType = "application/json";
+            ContentType = "application/json";            
         }
 
         public override void ExecuteResult(ControllerContext context)
         {
-            //DEBES HACER ALGO ACA PARA QUE CUANDO CASTEE EL ERROR DISCIERNA ENTRE LOGICO Y BD
             var errorResponse = _response as O7ErrorResponse;
             if (errorResponse != null)
             {
-                //NO SE CAMBIA EL ESTADO DE CODIGO, PERO SI ES ERROR DE DB AGREGAR EL MENSAJE ACA
                 context.RequestContext.HttpContext.Response.StatusCode = 500;
                 context.RequestContext.HttpContext.Response.StatusDescription = errorResponse.Message;
             }
-            var successResponse = _response as O7SuccessResponse<string>;
-            if (successResponse != null)
-            {
-                Data = successResponse.Value1;
-            }
             else
             {
-                //SI EL ERROR ES LOGICO CAMBIAR EL ERROR DE LA DESCRIPCION POR EL LOGICO
-                context.RequestContext.HttpContext.Response.StatusCode = 400;
-                context.RequestContext.HttpContext.Response.StatusDescription = "Bad Request";
+                var successResponse = (O7SuccessResponse<string>)_response;
+                Data = successResponse.Value1;
             }
             base.ExecuteResult(context);
         }

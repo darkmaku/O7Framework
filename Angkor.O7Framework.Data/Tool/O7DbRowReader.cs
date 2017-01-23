@@ -15,7 +15,9 @@ namespace Angkor.O7Framework.Data.Tool
 
         public TValue GetValue<TValue>(int index)
         {
-            var result = _reader.GetValue(index);
+            object result = null;
+            if (!_reader.IsDBNull(index))
+                result = _reader.GetValue(index);
             if (typeof(TValue) == typeof(string))
                 return (TValue) Convert.ChangeType(result ?? string.Empty, typeof(string));
             if (typeof(TValue) == typeof(int))
