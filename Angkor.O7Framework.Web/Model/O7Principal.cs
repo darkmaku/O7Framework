@@ -1,4 +1,5 @@
-﻿using System.Security.Principal;
+﻿using System.Collections.Generic;
+using System.Security.Principal;
 
 namespace Angkor.O7Framework.Web.Model
 {
@@ -13,13 +14,17 @@ namespace Angkor.O7Framework.Web.Model
         public string Branch { get;  }
         public string Name { get; }
         public string Password { get; }
-        public O7Principal(string login, string company, string branch, string name, string password)
+        public string UserApplication { get; }
+        public Dictionary<string, string> Atrributes { get; }
+        public O7Principal(string login, string company, string branch, string name, string password,string UserApplication,Dictionary<string,string> atrributes)
         {
             Identity = new GenericIdentity(login);
             Company = company;
             Branch = branch;
             Name = name;
             Password = password;
+            this.UserApplication = UserApplication;
+            Atrributes = atrributes;
         }
     }
 }

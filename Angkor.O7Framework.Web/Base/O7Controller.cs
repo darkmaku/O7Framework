@@ -14,7 +14,7 @@ namespace Angkor.O7Framework.Web.Base
             {
                 Contract.Requires(HttpContext.User is O7Principal);
                 var user = new O7Authentication(Session).User;
-                return new O7Principal(user.Login, user.Company, user.Branch, user.Name, user.Password);                
+                return new O7Principal(user.Login, user.Company, user.Branch, user.Name, user.Password,user.UserApplication,user.Atrributes);                
             }
         }
     }
