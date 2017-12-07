@@ -17,7 +17,7 @@ namespace Angkor.O7Framework.Web.Base
             get
             {
                 var user = new O7Authentication(Session).User;
-                return new O7Principal(user.Login, user.Company, user.Branch, user.Name, user.Password,user.UserApplication,user.Atrributes);
+                return new O7Principal(user.Login, user.Company, user.Branch, user.Name, user.Password,user.UserApplication,user.Attributes);
             }
         }
     }
@@ -33,7 +33,7 @@ namespace Angkor.O7Framework.Web.Base
             get
             {
                 var user = new O7Authentication(Session).User;
-                return new O7Principal(user.Login, user.Company, user.Branch, user.Name, user.Password,user.UserApplication,user.Atrributes);
+                return new O7Principal(user.Login, user.Company, user.Branch, user.Name, user.Password,user.UserApplication,user.Attributes);
             }
         }
     }

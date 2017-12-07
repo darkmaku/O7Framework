@@ -6,27 +6,29 @@ namespace Angkor.O7Framework.Web.Model
 {
     public class O7User
     {
+        public string Login { get; set; }
+        public string Password { get; set; }
         public string Company { get; set; }
         public string Branch { get; set; }
-        public string Login { get; set; }
         public string Name { get; set; }
-        public string Password { get; set; }
-        public string UserApplication { get; }
 
-        public Dictionary<string, string> Atrributes { get; }
-        public O7User(string company, string branch, string login, string name, string password,string UserApplication, Dictionary<string, string> atrributes)
-        {
-            Company = company;
-            Branch = branch;
-            Login = login;
-            Name = name;
-            Password = password;
-            this.UserApplication = UserApplication;
-            Atrributes = atrributes;
-        }
+        public string UserApplication { get; set; }
+        public Dictionary<string, string> Attributes { get; set; }
 
         public O7User()
         {
+        }
+
+        public O7User(string company, string branch, string login, string name, string password, string userApplication, Dictionary<string, string> attributes
+            )
+        {
+            Login = login;
+            Password = password;
+            Company = company;
+            Branch = branch;
+            Name = name;
+            this.UserApplication = userApplication;
+            this.Attributes = attributes;
         }
     }
 }

@@ -15,8 +15,8 @@ namespace Angkor.O7Framework.Web.Model
         public string Name { get; }
         public string Password { get; }
         public string UserApplication { get; }
-        public Dictionary<string, string> Atrributes { get; }
-        public O7Principal(string login, string company, string branch, string name, string password,string UserApplication,Dictionary<string,string> atrributes)
+        public Dictionary<string, string> Attributes { get; }
+        public O7Principal(string login, string company, string branch, string name, string password,string UserApplication,Dictionary<string,string> attributes)
         {
             Identity = new GenericIdentity(login);
             Company = company;
@@ -24,7 +24,9 @@ namespace Angkor.O7Framework.Web.Model
             Name = name;
             Password = password;
             this.UserApplication = UserApplication;
-            Atrributes = atrributes;
+            this.Attributes = attributes;
         }
     }
 }
+
+
