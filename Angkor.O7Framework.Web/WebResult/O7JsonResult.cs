@@ -1,8 +1,9 @@
 ﻿// Create by Felix A. Bueno
-using System;
+
 using System.Web.Mvc;
 using System.Diagnostics.Contracts;
 using Angkor.O7Framework.Common.Model;
+using Newtonsoft.Json;
 
 namespace Angkor.O7Framework.Web.WebResult
 {
@@ -15,23 +16,41 @@ namespace Angkor.O7Framework.Web.WebResult
             Contract.Requires(value != null);
             _response = value;
             JsonRequestBehavior = JsonRequestBehavior.AllowGet;
-            ContentType = "application/json";            
+            ContentType = "application/json";
         }
 
         public override void ExecuteResult(ControllerContext context)
         {
-            var errorResponse = _response as O7ErrorResponse;
-            if (errorResponse != null)
+            try
+            {
+                set_response_to_controller(context);
+            }
+            catch (System.Exception exception)
             {
                 context.RequestContext.HttpContext.Response.StatusCode = 500;
-                context.RequestContext.HttpContext.Response.StatusDescription = errorResponse.Message;
-            }
-            else
-            {
-                var successResponse = (O7SuccessResponse<string>)_response;
-                Data = successResponse.Value1;
+                context.RequestContext.HttpContext.Response.StatusDescription = exception.Message;
             }
             base.ExecuteResult(context);
+        }
+
+        private void set_response_to_controller(ControllerContext context)
+        {
+            switch (_response)
+            {
+                case O7ErrorResponse errorResponse:
+                    context.RequestContext.HttpContext.Response.StatusCode = 500;
+                    context.RequestContext.HttpContext.Response.StatusDescription = errorResponse.Message;
+                    break;
+                case O7SuccessResponse<string> jsonResponse:
+                    Data = jsonResponse.Value1;
+                    context.RequestContext.HttpContext.Response.StatusCode = 200;
+                    break;
+                default:
+                    var successResponse = (O7SuccessResponse<object>)_response;
+                    Data = JsonConvert.SerializeObject(successResponse.Value1);
+                    context.RequestContext.HttpContext.Response.StatusCode = 200;
+                    break;
+            }
         }
     }
 }
