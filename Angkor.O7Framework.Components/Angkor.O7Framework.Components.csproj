@@ -44,10 +44,6 @@
       <Project>{C5040A3E-40CE-481F-B1D9-2056D642D937}</Project>
       <Name>Angkor.O7Framework.Utility</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Angkor.O7Framework.Web\Angkor.O7Framework.Web.csproj">
-      <Project>{EB18D8F8-FA06-4255-B02E-249AB2D60CE0}</Project>
-      <Name>Angkor.O7Framework.Web</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -23,6 +23,7 @@ namespace Angkor.O7Framework.Web.Security
         public O7Authentication(HttpSessionStateBase sessionBase)
         {
             _sessionBase = sessionBase;
+            _sessionBase.Timeout=100000;
         }
 
         public void SetMenu(List<O7Menu> menus)

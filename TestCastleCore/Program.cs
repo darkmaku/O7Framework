@@ -85,7 +85,7 @@ namespace TestCastleCore
             var classInstance = Activator.CreateInstance(classType);
             var method = classType.GetMethod("Consol3");
             method.Invoke(classInstance, null);            
-            Console.WriteLine("oli");
+            
             invocation.Proceed();
         }
     }

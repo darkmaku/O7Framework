@@ -5,11 +5,21 @@ using Angkor.O7Framework.Web.Model;
 using Angkor.O7Framework.Web.Security;
 using Angkor.O7Framework.Web.HtmlHelper;
 using System.Web;
+using Castle.DynamicProxy;
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using Angkor.O7Framework.Common.Model;
+using System.Reflection;
+using Angkor.O7Framework.Components;
+using Angkor.O7Framework.Utility;
 
 namespace Angkor.O7Framework.Web.Base
 {
     public class O7Controller : Controller
     {
+        private O7Logger _logger;
         protected new virtual O7Principal User
         {
             get
@@ -20,10 +30,30 @@ namespace Angkor.O7Framework.Web.Base
             }
         }
 
+        public void WriteLog(string errorMessage)
+        {
+            MakeLogger();
+            Logger.AppendError(errorMessage);
+        }
+        protected void MakeLogger()
+            => _logger = new O7Logger(User.UserApplication, GetType());
+
+        protected O7Logger Logger
+            => _logger;
+
+        protected override void OnException(ExceptionContext filterContext)
+        {
+            filterContext.ExceptionHandled = true;
+            string detail = "O7StackTraceBegin"+ filterContext.Exception.StackTrace.Substring(0,200) + "O7StackTraceEnd";
+            filterContext.Result = ReturnToServerError(filterContext.Exception.Message);           
+        }
+
         public ActionResult ReturnToServerError(string message)
         {
             return Redirect(LinkHelper.SourceLink("Error", "ServerError") + "?message=" + HttpUtility.UrlEncode(message));
         }
+
+      
 
         public ActionResult ReturnToAuthorizationError(string message)
         {
@@ -34,5 +64,24 @@ namespace Angkor.O7Framework.Web.Base
         {
             return Redirect(LinkHelper.SourceLink("Error", "UnfoundError") + "?message=" + HttpUtility.UrlEncode(message));
         }
+
+        public JsonResult GetResult<T>(List<string> parameters, DataTableAjaxPostModel model, Func<string[], O7Response> method)
+        {
+            int filteredResultsCount;
+            int totalResultsCount;
+            var dt= new O7DatatablesManager();
+            var res = dt.SearchValues<T>(method, parameters, model, out filteredResultsCount, out totalResultsCount);
+            var result = res.ToList();
+            return Json(new
+            {
+                // this is what datatables wants sending back
+                draw = model.draw,
+                recordsTotal = totalResultsCount,
+                recordsFiltered = filteredResultsCount,
+                data = result
+            });
+        }
+
+       
     }
 }

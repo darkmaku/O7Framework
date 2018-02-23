@@ -30,13 +30,24 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.11.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="O7Cryptography.cs" />
     <Compile Include="O7Cryptography.Implementation.cs" />
+    <Compile Include="O7PaginationManager.cs" />
     <Compile Include="O7Extension.cs" />
     <Compile Include="O7Extension.Implementation.cs" />
+    <Compile Include="O7DatatablesManager.cs" />
+    <Compile Include="O7MailManager.cs" />
+    <Compile Include="O7FileManager.cs" />
     <Compile Include="O7JsonSerealizer.cs" />
     <Compile Include="O7JsonSerealizer.Implementation.cs" />
     <Compile Include="O7Mapper.cs" />
@@ -49,6 +60,9 @@
       <Project>{69706a01-42d2-4782-bb3d-e97bf6bb5ff7}</Project>
       <Name>Angkor.O7Framework.Common</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
