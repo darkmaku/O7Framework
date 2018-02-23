@@ -44,6 +44,8 @@ namespace Angkor.O7Framework.Data.Tool
                 return OracleDbType.Int32;
             if (dataType == typeof(double))
                 return OracleDbType.Double;
+            if (dataType.IsArray)
+                return OracleDbType.Clob;
             throw O7DataException.MakeMatchException;
         }
     }

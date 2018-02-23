@@ -30,6 +30,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Castle.Core, Version=4.0.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
+      <HintPath>..\packages\Castle.Core.4.2.1\lib\net45\Castle.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
       <Private>True</Private>
@@ -41,6 +45,7 @@
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.4\lib\net45\System.Web.Helpers.dll</HintPath>
       <Private>True</Private>
@@ -96,6 +101,10 @@
     <ProjectReference Include="..\Angkor.O7Framework.Common\Angkor.O7Framework.Common.csproj">
       <Project>{69706a01-42d2-4782-bb3d-e97bf6bb5ff7}</Project>
       <Name>Angkor.O7Framework.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Angkor.O7Framework.Components\Angkor.O7Framework.Components.csproj">
+      <Project>{25cb8af8-0001-451c-babc-c765ca02b384}</Project>
+      <Name>Angkor.O7Framework.Components</Name>
     </ProjectReference>
     <ProjectReference Include="..\Angkor.O7Framework.Security\Angkor.O7Framework.Utility.csproj">
       <Project>{C5040A3E-40CE-481F-B1D9-2056D642D937}</Project>

@@ -1,19 +1,29 @@
-﻿// Create by Felix A. Bueno
-using System.Collections.Generic;
-using System.Web;
+﻿
+
 using Angkor.O7Framework.Utility;
 using Angkor.O7Framework.Web.Model;
+using Angkor.O7Framework.Web.Security;
 using Angkor.O7Framework.Web.Utility;
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Web;
+using System.Web.Script.Serialization;
 
 namespace Angkor.O7Framework.Web.Security
 {
     public class O7Authentication
     {
+
         private readonly HttpSessionStateBase _sessionBase;
-        
+
         public O7Authentication(HttpSessionStateBase sessionBase)
         {
             _sessionBase = sessionBase;
+            _sessionBase.Timeout=100000;
         }
 
         public void SetMenu(List<O7Menu> menus)
@@ -24,7 +34,8 @@ namespace Angkor.O7Framework.Web.Security
 
         public void SetUser(O7User user)
         {
-            var serializedUser = O7JsonSerealizer.Serialize(user);
+            var js = new JavaScriptSerializer();
+            var serializedUser = js.Serialize(user);
             _sessionBase.Add(WebConstant.USER_COOKIE, serializedUser);
         }
 
@@ -38,7 +49,7 @@ namespace Angkor.O7Framework.Web.Security
         {
             get
             {
-                var serializedCookie = (string) _sessionBase[WebConstant.MODULE_COOKIE];
+                var serializedCookie = (string)_sessionBase[WebConstant.MODULE_COOKIE];
                 return O7JsonSerealizer.Deserialize<List<O7Module>>(serializedCookie);
             }
         }
@@ -47,7 +58,7 @@ namespace Angkor.O7Framework.Web.Security
         {
             get
             {
-                var serializedMenu = (string) _sessionBase[WebConstant.MENU_COOKIE];
+                var serializedMenu = (string)_sessionBase[WebConstant.MENU_COOKIE];
                 return O7JsonSerealizer.Deserialize<List<O7Menu>>(serializedMenu);
             }
         }
@@ -56,8 +67,18 @@ namespace Angkor.O7Framework.Web.Security
         {
             get
             {
-                var serializedUser = (string)_sessionBase[WebConstant.USER_COOKIE];
-                return O7JsonSerealizer.Deserialize<O7User>(serializedUser);
+                try
+                {
+                    var serializedUser = (string)_sessionBase[WebConstant.USER_COOKIE];
+                    var js = new JavaScriptSerializer();
+                    var resp = js.Deserialize<O7User>(serializedUser);
+                    return resp;
+                }
+                catch (System.Exception e)
+                {
+                    return null;
+                }
+
             }
         }
 

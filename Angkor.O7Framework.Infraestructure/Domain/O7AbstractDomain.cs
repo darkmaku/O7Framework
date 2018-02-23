@@ -4,6 +4,7 @@ using System;
 using System.Reflection;
 using Angkor.O7Framework.Common.Model;
 using Angkor.O7Framework.Components;
+using Angkor.O7Framework.Utility;
 using Castle.DynamicProxy;
 
 namespace Angkor.O7Framework.Infrastructure.Domain
@@ -13,6 +14,7 @@ namespace Angkor.O7Framework.Infrastructure.Domain
         private IInvocation _invocation;
         private O7Logger _logger;
         private readonly string _userName;
+        
 
         protected O7AbstractDomain(string userName)
         {
