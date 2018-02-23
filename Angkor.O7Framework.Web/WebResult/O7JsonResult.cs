@@ -42,7 +42,7 @@ namespace Angkor.O7Framework.Web.WebResult
                     context.RequestContext.HttpContext.Response.StatusDescription = errorResponse.Message;
                     break;
                 case O7SuccessResponse<string> jsonResponse:
-                    Data = jsonResponse.Value1;
+                    Data = jsonResponse.Value1;                    
                     context.RequestContext.HttpContext.Response.StatusCode = 200;
                     break;
                 default:

@@ -5,7 +5,6 @@ using Angkor.O7Framework.Web.Model;
 using Angkor.O7Framework.Web.Security;
 using Angkor.O7Framework.Web.HtmlHelper;
 using System.Web;
-using Castle.DynamicProxy;
 using System;
 using System.Collections.Generic;
 using System.IO;

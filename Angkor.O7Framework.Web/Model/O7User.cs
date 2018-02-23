@@ -27,8 +27,8 @@ namespace Angkor.O7Framework.Web.Model
             Company = company;
             Branch = branch;
             Name = name;
-            this.UserApplication = userApplication;
-            this.Attributes = attributes;
+            UserApplication = userApplication;
+            Attributes = attributes;
         }
     }
 }
