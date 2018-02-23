@@ -14,6 +14,7 @@ using Angkor.O7Framework.Common.Model;
 using System.Reflection;
 using Angkor.O7Framework.Components;
 using Angkor.O7Framework.Utility;
+using Angkor.O7Framework.Web.Base;
 
 namespace Angkor.O7Framework.Web.Base
 {
