@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Configuration;
 using Angkor.O7Framework.Common.Model;
-using Newtonsoft.Json.Linq;
 using System.Web.Script.Serialization;
 
 namespace Angkor.O7Framework.Utility
@@ -73,9 +73,8 @@ namespace Angkor.O7Framework.Utility
                 request.ContentLength = 0;
                 var response = (HttpWebResponse)request.GetResponse();
                 var responseString = new StreamReader(response.GetResponseStream()).ReadToEnd();
-
-                var obj = JObject.Parse(responseString);
-                var content = (string)obj["content"];
+                var newobj = fastJSON.JSON.ToObject(responseString);
+                var content = GetProperty<string>(newobj, "content");
                 byte[] data = Convert.FromBase64String(content);
                 MemoryStream stream = new MemoryStream(data);
                 if (stream == null)
@@ -125,6 +124,24 @@ namespace Angkor.O7Framework.Utility
             return hostWeb + "/Shared/File/GetFile?url=" + path.Replace("/", "%2f").Replace("\\", "%2f");
         }
 
+        public static T GetProperty<T>(object myObject,string property)
+        {
+            Type myType = myObject.GetType();
+            IList<PropertyInfo> props = new List<PropertyInfo>(myType.GetProperties());
+            
+            foreach (PropertyInfo prop in props)
+            {
+                if (nameof(prop) == property)
+                {
+                    object propValue = prop.GetValue(myObject, null);
+                    T value = (T) propValue;
+                    return value;
+                }
+                // Do something with propValue
+            }
+            return default(T);
+        }
+
         public static string DeleteFile(string filepath)
         {
             try
@@ -137,8 +154,6 @@ namespace Angkor.O7Framework.Utility
                 request.ContentLength = 0;
                 var response = (HttpWebResponse)request.GetResponse();
                 var responseString = new StreamReader(response.GetResponseStream()).ReadToEnd();
-
-                var obj = JObject.Parse(responseString);
                 return "true";
             }
             catch (Exception e)
@@ -158,9 +173,8 @@ namespace Angkor.O7Framework.Utility
                 request.ContentLength = 0;
                 var response = (HttpWebResponse)request.GetResponse();
                 var responseString = new StreamReader(response.GetResponseStream()).ReadToEnd();
-
-                var obj = JObject.Parse(responseString);
-                var content = (string)obj["content"];
+                var newobj = fastJSON.JSON.ToObject(responseString);
+                var content = GetProperty<string>(newobj,"content");
                 string mimeType = MimeMapping.GetMimeMapping(filepath);
                 return "data:" + mimeType + "; base64," + content;
             }
