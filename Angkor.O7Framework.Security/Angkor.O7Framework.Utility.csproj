@@ -40,8 +40,8 @@
       <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.11.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
@@ -116,7 +116,7 @@
 		<MergeAssemblies Include="$(OutputPath)\fastjson.dll" />
 	  </ItemGroup>
 	  <PropertyGroup>
-		<OutputAssembly>$(OutputPath)\utility2.dll</OutputAssembly>
+		<OutputAssembly>$(OutputPath)\Angkor.O7Framework.Utility2.dll</OutputAssembly>
 		<Merger Condition="('$(OS)' == 'Windows_NT')">&quot;$(SolutionDir)\packages\ILMerge.2.14.1208\tools\ILMerge.exe&quot;</Merger>
 		<Merger Condition="('$(OS)' != 'Windows_NT')">mono --runtime=v4.0.30319 &quot;$(SolutionDir)\packages\ILRepack.2.0.15\tools\ILRepack.exe&quot;</Merger>
 	  </PropertyGroup>

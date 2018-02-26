@@ -31,6 +31,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Angkor.O7Framework.Utility, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Angkor.O7Framework.Utility.dll</HintPath>
+    </Reference>
     <Reference Include="Oracle.ManagedDataAccess, Version=4.121.2.0, Culture=neutral, PublicKeyToken=89b483f429c47342, processorArchitecture=MSIL">
       <HintPath>..\packages\Oracle.ManagedDataAccess.12.1.24160719\lib\net40\Oracle.ManagedDataAccess.dll</HintPath>
       <Private>True</Private>
@@ -61,10 +65,6 @@
     <ProjectReference Include="..\Angkor.O7Framework.Common\Angkor.O7Framework.Common.csproj">
       <Project>{69706A01-42D2-4782-BB3D-E97BF6BB5FF7}</Project>
       <Name>Angkor.O7Framework.Common</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Angkor.O7Framework.Security\Angkor.O7Framework.Utility.csproj">
-      <Project>{C5040A3E-40CE-481F-B1D9-2056D642D937}</Project>
-      <Name>Angkor.O7Framework.Utility</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
