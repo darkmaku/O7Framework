@@ -24,7 +24,7 @@ namespace Angkor.O7Framework.Web.Model
             Name = name;
             Password = password;
             this.UserApplication = UserApplication;
-            this.Attributes = attributes;
+            Attributes = attributes;
         }
     }
 }

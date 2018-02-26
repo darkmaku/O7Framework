@@ -3,7 +3,7 @@
 using System.Web.Mvc;
 using System.Diagnostics.Contracts;
 using Angkor.O7Framework.Common.Model;
-using Newtonsoft.Json;
+using Angkor.O7Framework.Utility;
 
 namespace Angkor.O7Framework.Web.WebResult
 {
@@ -47,7 +47,7 @@ namespace Angkor.O7Framework.Web.WebResult
                     break;
                 default:
                     var successResponse = (O7SuccessResponse<object>)_response;
-                    Data = JsonConvert.SerializeObject(successResponse.Value1);
+                    Data = O7JsonSerealizer.Serialize(successResponse.Value1);
                     context.RequestContext.HttpContext.Response.StatusCode = 200;
                     break;
             }

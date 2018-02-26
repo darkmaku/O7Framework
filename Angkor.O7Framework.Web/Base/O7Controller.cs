@@ -7,13 +7,10 @@ using Angkor.O7Framework.Web.HtmlHelper;
 using System.Web;
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using Angkor.O7Framework.Common.Model;
-using System.Reflection;
 using Angkor.O7Framework.Components;
 using Angkor.O7Framework.Utility;
-using Angkor.O7Framework.Web.Base;
 
 namespace Angkor.O7Framework.Web.Base
 {
@@ -52,9 +49,7 @@ namespace Angkor.O7Framework.Web.Base
         {
             return Redirect(LinkHelper.SourceLink("Error", "ServerError") + "?message=" + HttpUtility.UrlEncode(message));
         }
-
-      
-
+        
         public ActionResult ReturnToAuthorizationError(string message)
         {
             return Redirect(LinkHelper.SourceLink("Error", "AuthorizationError") + "?message=" + HttpUtility.UrlEncode(message));
