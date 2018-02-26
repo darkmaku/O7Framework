@@ -12,11 +12,17 @@ namespace Angkor.O7Framework.Utility
     {
         private static readonly byte[] _salt = Encoding.ASCII.GetBytes("o6806642kbM7c5");
         private readonly Rfc2898DeriveBytes _key;
+        private const string CRYPTO_KEY = "AKG_SOL";
 
         public O7Cryptography(string key)
         {            
             Contract.Requires(ContractValidator.StringIsNotNullOrEmpty(key));
             _key = new Rfc2898DeriveBytes(key, _salt);
+        }
+
+        public O7Cryptography()
+        {
+            _key = new Rfc2898DeriveBytes(CRYPTO_KEY, _salt);
         }
 
         public string Encrypt(string value)

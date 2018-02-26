@@ -4,7 +4,7 @@ using fastJSON;
 
 namespace Angkor.O7Framework.Utility
 {
-    public static partial class O7JsonSerealizer
+    public static class O7JsonSerealizer
     {
         public static string Serialize(object obj)
         {
