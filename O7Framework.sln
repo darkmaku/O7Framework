@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio 15
+VisualStudioVersion = 15.0.27130.2036
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Angkor.O7Framework.Data", "Angkor.O7Framework.Data\Angkor.O7Framework.Data.csproj", "{6CE0C6E6-55C7-42C9-BFDF-D51FB14CE6B0}"
 EndProject
@@ -18,6 +18,11 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Angkor.O7Framework.Infrastructure", "Angkor.O7Framework.Infraestructure\Angkor.O7Framework.Infrastructure.csproj", "{2839E270-28C7-4031-B2E4-C97C61B66619}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Angkor.O7Framework.Components", "Angkor.O7Framework.Components\Angkor.O7Framework.Components.csproj", "{25CB8AF8-0001-451C-BABC-C765CA02B384}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{305E1225-34CE-43ED-813A-4273361B6B8C}"
+	ProjectSection(SolutionItems) = preProject
+		packages\Angkor.O7Framework.Utility.dll = packages\Angkor.O7Framework.Utility.dll
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -60,5 +65,8 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {268BC3D8-3DB5-4FDF-A44A-49F6B1D7C078}
 	EndGlobalSection
 EndGlobal
