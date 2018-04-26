@@ -35,7 +35,7 @@ namespace Angkor.O7Framework.Components
         private O7TextWriter build_text_writer()
         {
             var connection = (O7File)ConfigurationManager.GetSection("O7File");
-            return new O7TextWriter(connection.Path, connection.Name, connection.Extension);
+            return new O7TextWriter(connection.Path, connection.Name+ "_" +DateTime.Now.ToString("yyyy-MM-dd") , connection.Extension);
         }
     }
 }

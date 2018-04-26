@@ -41,18 +41,19 @@ namespace Angkor.O7Framework.Web.Base
         protected override void OnException(ExceptionContext filterContext)
         {
             filterContext.ExceptionHandled = true;
+            var reloadUrl = filterContext.RequestContext.HttpContext.Request.Url.AbsoluteUri;
             string detail = "O7StackTraceBegin"+ filterContext.Exception.StackTrace.Substring(0,200) + "O7StackTraceEnd";
-            filterContext.Result = ReturnToServerError(filterContext.Exception.Message);           
+            filterContext.Result = ReturnToServerError(filterContext.Exception.Message,reloadUrl);           
         }
 
-        public ActionResult ReturnToServerError(string message)
+        public ActionResult ReturnToServerError(string message,string reloadUrl)
         {
-            return Redirect(LinkHelper.SourceLink("Error", "ServerError") + "?message=" + HttpUtility.UrlEncode(message));
+            return Redirect(LinkHelper.SourceLink("Error", "ServerError") + "?message=" + HttpUtility.UrlEncode(message) + "?reloadUrl=" + HttpUtility.UrlEncode(reloadUrl));
         }
         
-        public ActionResult ReturnToAuthorizationError(string message)
+        public ActionResult ReturnToAuthorizationError(string message, string reloadUrl)
         {
-            return Redirect(LinkHelper.SourceLink("Error", "AuthorizationError") + "?message=" + HttpUtility.UrlEncode(message));
+            return Redirect(LinkHelper.SourceLink("Error", "AuthorizationError") + "?message=" + HttpUtility.UrlEncode(message) + "?reloadUrl=" + HttpUtility.UrlEncode(reloadUrl));
         }
 
         public ActionResult ReturnToUnfoundError(string message)

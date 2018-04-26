@@ -12,8 +12,7 @@ namespace Angkor.O7Framework.Web.Security
 
         public O7Authentication(HttpSessionStateBase sessionBase)
         {
-            _sessionBase = sessionBase;
-            _sessionBase.Timeout = 100000;
+            _sessionBase = sessionBase;            
         }
 
 
@@ -29,7 +28,11 @@ namespace Angkor.O7Framework.Web.Security
         public void SetMenu(List<O7Menu> menus)
         {
             var serializedMenu = O7JsonSerealizer.Serialize(menus);
-            _sessionBase.Add(WebConstant.MENU_COOKIE, serializedMenu);
+            var session = _sessionBase[WebConstant.MENU_COOKIE];
+            if (session == null)
+                _sessionBase.Add(WebConstant.MENU_COOKIE, serializedMenu);
+            else
+                _sessionBase[WebConstant.MENU_COOKIE] = serializedMenu;
         }
 
 
@@ -45,7 +48,11 @@ namespace Angkor.O7Framework.Web.Security
         public void SetUser(O7User user)
         {
             var serializedUser = O7JsonSerealizer.Serialize(user);
-            _sessionBase.Add(WebConstant.USER_COOKIE, serializedUser);
+            var session = _sessionBase[WebConstant.USER_COOKIE];
+            if (session == null)
+                _sessionBase.Add(WebConstant.USER_COOKIE, serializedUser);
+            else
+                _sessionBase[WebConstant.USER_COOKIE] = serializedUser;
         }
 
 
@@ -61,7 +68,11 @@ namespace Angkor.O7Framework.Web.Security
         public void SetModule(List<O7Module> modules)
         {
             var serializedModule = O7JsonSerealizer.Serialize(modules);
-            _sessionBase.Add(WebConstant.MODULE_COOKIE, serializedModule);
+            var session = _sessionBase[WebConstant.MODULE_COOKIE];
+            if (session == null)
+                _sessionBase.Add(WebConstant.MODULE_COOKIE, serializedModule);
+            else
+                _sessionBase[WebConstant.MODULE_COOKIE] = serializedModule;
         }
 
 
